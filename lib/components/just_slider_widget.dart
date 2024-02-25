@@ -12,9 +12,11 @@ class JustSliderWidget extends StatefulWidget {
   const JustSliderWidget({
     super.key,
     required this.onChange,
-  });
+    int? initialValue,
+  }) : this.initialValue = initialValue ?? 0;
 
   final Future Function(bool? isCorrect)? onChange;
+  final int initialValue;
 
   @override
   State<JustSliderWidget> createState() => _JustSliderWidgetState();
@@ -77,24 +79,44 @@ class _JustSliderWidgetState extends State<JustSliderWidget> {
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
-              Container(
-                width: 300.0,
-                child: Slider(
-                  activeColor: FlutterFlowTheme.of(context).primary,
-                  inactiveColor: FlutterFlowTheme.of(context).alternate,
-                  min: 0.0,
-                  max: 100.0,
-                  value: _model.sliderValue ??= 0.0,
-                  label: _model.sliderValue.toString(),
-                  divisions: 100,
-                  onChanged: (newValue) async {
-                    newValue = double.parse(newValue.toStringAsFixed(2));
-                    setState(() => _model.sliderValue = newValue);
-                    await widget.onChange?.call(
-                      _model.csCorrectValue == _model.sliderValue,
-                    );
-                  },
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: 300.0,
+                    child: Slider(
+                      activeColor: FlutterFlowTheme.of(context).primary,
+                      inactiveColor: FlutterFlowTheme.of(context).alternate,
+                      min: 0.0,
+                      max: 100.0,
+                      value: _model.sliderValue ??=
+                          widget.initialValue.toDouble(),
+                      label: _model.sliderValue.toString(),
+                      divisions: 100,
+                      onChanged: (newValue) async {
+                        newValue = double.parse(newValue.toStringAsFixed(2));
+                        setState(() => _model.sliderValue = newValue);
+                        await widget.onChange?.call(
+                          _model.csCorrectValue == _model.sliderValue,
+                        );
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/cover.png',
+                          width: 20.0,
+                          height: 20.0,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               Text(
                 FFLocalizations.of(context).getText(

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/components/just_slider_widget.dart';
@@ -10,7 +11,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -24,9 +29,11 @@ class PlayWidget extends StatefulWidget {
   const PlayWidget({
     super.key,
     required this.mode,
+    this.scheduleRef,
   });
 
   final GameMode? mode;
+  final DocumentReference? scheduleRef;
 
   @override
   State<PlayWidget> createState() => _PlayWidgetState();
@@ -38,7 +45,35 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'imageOnPageLoadAnimation': AnimationInfo(
+    'imageOnPageLoadAnimation1': AnimationInfo(
+      loop: true,
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ShakeEffect(
+          curve: Curves.bounceOut,
+          delay: 0.ms,
+          duration: 1000.ms,
+          hz: 3,
+          offset: Offset(0.0, 0.0),
+          rotation: 0.017,
+        ),
+      ],
+    ),
+    'imageOnPageLoadAnimation2': AnimationInfo(
+      loop: true,
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ShakeEffect(
+          curve: Curves.bounceOut,
+          delay: 0.ms,
+          duration: 1000.ms,
+          hz: 3,
+          offset: Offset(0.0, 0.0),
+          rotation: 0.017,
+        ),
+      ],
+    ),
+    'imageOnPageLoadAnimation3': AnimationInfo(
       loop: true,
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -71,6 +106,48 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
           .setAsset('assets/audios/earthquake.mp3')
           .then((_) => _model.soundPlayer!.play());
 
+      if (widget.scheduleRef != null) {
+        _model.schedule =
+            await SchedulesRecord.getDocumentOnce(widget.scheduleRef!);
+        _model.scheduleQuiz =
+            await QuizzesRecord.getDocumentOnce(_model.schedule!.quizRef!);
+        setState(() {
+          _model.psQuiz = _model.scheduleQuiz;
+        });
+      } else {
+        // クイズの総数を取得
+        _model.quizCount = await queryQuizzesRecordCount();
+        _model.randomQuiz = await QuizzesRecord.getDocumentOnce(
+            functions.quizReferenceFromId(
+                random_data.randomInteger(1, _model.quizCount!).toString()));
+        setState(() {
+          _model.psQuiz = _model.randomQuiz;
+        });
+      }
+
+      if (_model.psNowStep == GameStep.Drop) {
+        while (_model.psSliderValue! >= 0) {
+          if (_model.psIsUp) {
+            setState(() {
+              _model.psSliderValue = _model.psSliderValue! + 1;
+            });
+            if (_model.psSliderValue == 100) {
+              setState(() {
+                _model.psIsUp = false;
+              });
+            }
+          } else {
+            setState(() {
+              _model.psSliderValue = _model.psSliderValue! + -1;
+            });
+            if (_model.psSliderValue == 0) {
+              setState(() {
+                _model.psIsUp = true;
+              });
+            }
+          }
+        }
+      }
       // バイブレーション繰り返し
       _model.vibrationTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 500),
@@ -213,33 +290,21 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/DALLE_2024-02-25_12.54.30_-_An_illustration_capturing_the_moment_a_person_stands_calmly_in_a_room_during_the_onset_of_an_earthquake._The_individual_is_portrayed_as_alert_yet_comp.webp',
-                          width: double.infinity,
-                          height: 387.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['imageOnPageLoadAnimation']!),
                       Builder(
                         builder: (context) {
                           if (_model.psNowStep == GameStep.Drop) {
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                wrapWithModel(
-                                  model: _model.justSliderModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: JustSliderWidget(
-                                    onChange: (isCorrect) async {
-                                      setState(() {
-                                        _model.psCanProceed = isCorrect!;
-                                      });
-                                    },
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/49svh_2.png',
+                                    height: 400.0,
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation1']!),
                                 if (_model.psCanProceed)
                                   Text(
                                     FFLocalizations.of(context).getText(
@@ -248,19 +313,62 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    setState(() {
+                                      _model.psCanProceed = true;
+                                    });
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    '9fuasr3y' /* Button */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          color: Colors.white,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
                               ],
                             );
                           } else if (_model.psNowStep == GameStep.Cover) {
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/3a9k2_3.png',
+                                    height: 400.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation2']!),
                                 wrapWithModel(
-                                  model: _model.quizModel,
+                                  model: _model.justSliderModel,
                                   updateCallback: () => setState(() {}),
-                                  child: QuizWidget(
-                                    onCorrect: () async {
+                                  child: JustSliderWidget(
+                                    initialValue: valueOrDefault<int>(
+                                      _model.psSliderValue,
+                                      0,
+                                    ),
+                                    onChange: (isCorrect) async {
                                       setState(() {
-                                        _model.psCanProceed = true;
+                                        _model.psCanProceed = isCorrect!;
                                       });
                                     },
                                   ),
@@ -276,14 +384,41 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                               ].divide(SizedBox(height: 20.0)),
                             );
                           } else if (_model.psNowStep == GameStep.HoldOn) {
-                            return Text(
-                              FFLocalizations.of(context).getText(
-                                'hkh03ayt' /* HOLD ON を長押し
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/vnimc_1.png',
+                                    height: 400.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation3']!),
+                                wrapWithModel(
+                                  model: _model.quizModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: QuizWidget(
+                                    quiz: _model.psQuiz!,
+                                    onCorrect: () async {
+                                      setState(() {
+                                        _model.psCanProceed = true;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'hkh03ayt' /* HOLD ON を長押し
 
 本当は揺れがおさまるまでにしたい... */
-                                ,
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                                    ,
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ],
                             );
                           } else {
                             return Text(

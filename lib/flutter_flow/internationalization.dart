@@ -109,107 +109,50 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '90lh48ob': {
       'ja': 'シェイクアウト\nゲーム',
-      'en': 'ShakeOut\ngame',
+      'en': 'shake out\ngame',
     },
     '45xdkaj0': {
       'ja': 'はじめる',
-      'en': '',
-    },
-    '1ksepzcd': {
-      'ja': 'クイズテンプレート（後で削除する）',
-      'en': '',
+      'en': 'Start',
     },
     'naw8gn6b': {
       'ja': '設定',
-      'en': '',
+      'en': 'setting',
     },
     'xeijx7fg': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Settings
   {
     'y19j4wyr': {
       'ja': 'Sound',
-      'en': '',
+      'en': 'Sound',
     },
     'dvjbrxng': {
       'ja': 'Music',
-      'en': '',
-    },
-    'nl213yvw': {
-      'ja': 'Dark Mode',
-      'en': '',
+      'en': 'Music',
     },
     '9pd1oliu': {
       'ja': 'Vibration',
-      'en': '',
+      'en': 'Vibration',
     },
     'xhaw44e7': {
       'ja': 'LEADERBOARD',
-      'en': '',
+      'en': 'LEADER BOARD',
+    },
+    'xr2qhw6n': {
+      'ja': 'Logout',
+      'en': 'Logout',
     },
     'fth0uaoi': {
       'ja': 'Settings',
-      'en': '',
+      'en': 'Settings',
     },
     'fknrq7qx': {
       'ja': 'Home',
-      'en': '',
-    },
-  },
-  // SelectLevel
-  {
-    'bdnr0kdh': {
-      'ja': 'Select Level',
-      'en': '',
-    },
-    'q7e1mrck': {
-      'ja': 'Home',
-      'en': '',
-    },
-  },
-  // GamePage
-  {
-    'tbp6m8js': {
-      'ja': 'Question 1/20',
-      'en': '',
-    },
-    '4yn84b5t': {
-      'ja': 'Home',
-      'en': '',
-    },
-  },
-  // ConfettiWinnerPage
-  {
-    'sj6oldkw': {
-      'ja': 'More Random Description',
-      'en': '',
-    },
-    '6b4rhq95': {
-      'ja': 'Level Complete!',
-      'en': '',
-    },
-    '319ofsbd': {
-      'ja': 'x 500',
-      'en': '',
-    },
-    '3bxtikg6': {
-      'ja': 'x 100',
-      'en': '',
-    },
-    'm5esdzrb': {
-      'ja': 'Next Level ',
-      'en': '',
-    },
-    'xe9w1djd': {
-      'ja': 'Replay',
-      'en': '',
-    },
-    'e2inuykw': {
-      'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // LeaderBoard
@@ -231,6 +174,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wv138q5m': {
       'ja': 'DROP を下にスワイプ！',
+      'en': '',
+    },
+    '9fuasr3y': {
+      'ja': 'Button',
       'en': '',
     },
     'j3n3lhv5': {
@@ -291,8 +238,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // TopPage
   {
+    '297sumt4': {
+      'ja': 'シェイクアウト\nゲーム',
+      'en': '',
+    },
     '87dm7fwb': {
       'ja': 'Tap to start',
+      'en': '',
+    },
+    'w87yp6rz': {
+      'ja': '© 2022 C3REVE,Inc. All Right Reserved.',
       'en': '',
     },
     '91egtzsk': {
@@ -351,6 +306,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Quiz
   {
+    'r49ue5br': {
+      'ja': 'Hello World',
+      'en': '',
+    },
     'aknaslnm': {
       'ja': '正解',
       'en': '',
@@ -380,6 +339,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Miscellaneous
   {
+    'zzth9bry': {
+      'ja': 'ランキングやアイテムの獲得ができるゲームは通知からのみ参加が可能です。',
+      'en': '',
+    },
     '6s9x7osi': {
       'ja': '',
       'en': '',

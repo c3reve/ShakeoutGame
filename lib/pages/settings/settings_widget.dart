@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -210,48 +211,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         Expanded(
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'nl213yvw' /* Dark Mode */,
-                            ),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
-                            child: Switch.adaptive(
-                              value: _model.darkModeSwitchValue ??= false,
-                              onChanged: (newValue) async {
-                                setState(() =>
-                                    _model.darkModeSwitchValue = newValue!);
-                              },
-                              activeColor: FlutterFlowTheme.of(context).primary,
-                              activeTrackColor:
-                                  FlutterFlowTheme.of(context).accent1,
-                              inactiveTrackColor:
-                                  FlutterFlowTheme.of(context).accent1,
-                              inactiveThumbColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            FFLocalizations.of(context).getText(
                               '9pd1oliu' /* Vibration */,
                             ),
                             textAlign: TextAlign.start,
@@ -304,6 +263,36 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   },
                   text: FFLocalizations.of(context).getText(
                     'xhaw44e7' /* LEADERBOARD */,
+                  ),
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Figtree',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                    elevation: 3.0,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    GoRouter.of(context).prepareAuthEvent();
+                    await authManager.signOut();
+                    GoRouter.of(context).clearRedirectLocation();
+
+                    context.goNamedAuth('TopPage', context.mounted);
+                  },
+                  text: FFLocalizations.of(context).getText(
+                    'xr2qhw6n' /* Logout */,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,

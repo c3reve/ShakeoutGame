@@ -59,7 +59,13 @@
 	<true/>
 
 
-
+	<key>PermissionGroupNotification</key>
+    <string>ランキングやアイテムの獲得ができるゲームは通知からのみ参加が可能です。</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

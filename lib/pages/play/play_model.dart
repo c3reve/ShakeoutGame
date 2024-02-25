@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/components/just_slider_widget.dart';
@@ -10,8 +11,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'play_widget.dart' show PlayWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -35,10 +40,24 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   void updatePsDoneStepsAtIndex(int index, Function(GameStep) updateFn) =>
       psDoneSteps[index] = updateFn(psDoneSteps[index]);
 
+  int? psSliderValue = 0;
+
+  bool psIsUp = true;
+
+  QuizzesRecord? psQuiz;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   AudioPlayer? soundPlayer;
+  // Stores action output result for [Backend Call - Read Document] action in Play widget.
+  SchedulesRecord? schedule;
+  // Stores action output result for [Backend Call - Read Document] action in Play widget.
+  QuizzesRecord? scheduleQuiz;
+  // Stores action output result for [Firestore Query - Query a collection] action in Play widget.
+  int? quizCount;
+  // Stores action output result for [Backend Call - Read Document] action in Play widget.
+  QuizzesRecord? randomQuiz;
   InstantTimer? vibrationTimer;
   // State field(s) for Timer widget.
   int timerMilliseconds = 0;

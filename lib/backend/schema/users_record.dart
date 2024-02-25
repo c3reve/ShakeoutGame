@@ -47,6 +47,16 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "language" field.
+  String? _language;
+  String get language => _language ?? '';
+  bool hasLanguage() => _language != null;
+
+  // "doneTutorial" field.
+  bool? _doneTutorial;
+  bool get doneTutorial => _doneTutorial ?? false;
+  bool hasDoneTutorial() => _doneTutorial != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -54,6 +64,8 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _language = snapshotData['language'] as String?;
+    _doneTutorial = snapshotData['doneTutorial'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -96,6 +108,8 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  String? language,
+  bool? doneTutorial,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -105,6 +119,8 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'language': language,
+      'doneTutorial': doneTutorial,
     }.withoutNulls,
   );
 
@@ -121,7 +137,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.language == e2?.language &&
+        e1?.doneTutorial == e2?.doneTutorial;
   }
 
   @override
@@ -131,7 +149,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.language,
+        e?.doneTutorial
       ]);
 
   @override

@@ -95,35 +95,6 @@ class FFAppState extends ChangeNotifier {
     _currentPlayers.insert(_index, _value);
   }
 
-  List<LevelStruct> _levelsList = [];
-  List<LevelStruct> get levelsList => _levelsList;
-  set levelsList(List<LevelStruct> _value) {
-    _levelsList = _value;
-  }
-
-  void addToLevelsList(LevelStruct _value) {
-    _levelsList.add(_value);
-  }
-
-  void removeFromLevelsList(LevelStruct _value) {
-    _levelsList.remove(_value);
-  }
-
-  void removeAtIndexFromLevelsList(int _index) {
-    _levelsList.removeAt(_index);
-  }
-
-  void updateLevelsListAtIndex(
-    int _index,
-    LevelStruct Function(LevelStruct) updateFn,
-  ) {
-    _levelsList[_index] = updateFn(_levelsList[_index]);
-  }
-
-  void insertAtIndexInLevelsList(int _index, LevelStruct _value) {
-    _levelsList.insert(_index, _value);
-  }
-
   bool _isHapticAllowed = true;
   bool get isHapticAllowed => _isHapticAllowed;
   set isHapticAllowed(bool _value) {

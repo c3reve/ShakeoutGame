@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -13,9 +14,11 @@ class QuizWidget extends StatefulWidget {
   const QuizWidget({
     super.key,
     required this.onCorrect,
+    required this.quiz,
   });
 
   final Future Function()? onCorrect;
+  final QuizzesRecord? quiz;
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -70,69 +73,82 @@ class _QuizWidgetState extends State<QuizWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          FFButtonWidget(
-            onPressed: () async {
-              _model.soundPlayer2 ??= AudioPlayer();
-              if (_model.soundPlayer2!.playing) {
-                await _model.soundPlayer2!.stop();
-              }
-              _model.soundPlayer2!.setVolume(1.0);
-              _model.soundPlayer2!
-                  .setAsset('assets/audios/question_correct.mp3')
-                  .then((_) => _model.soundPlayer2!.play());
-
-              await widget.onCorrect?.call();
-            },
-            text: FFLocalizations.of(context).getText(
-              'aknaslnm' /* 正解 */,
+          Text(
+            FFLocalizations.of(context).getText(
+              'r49ue5br' /* Hello World */,
             ),
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).primary,
-              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Figtree',
-                    color: Colors.white,
-                  ),
-              elevation: 3.0,
-              borderSide: BorderSide(
-                color: Colors.transparent,
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+            style: FlutterFlowTheme.of(context).bodyMedium,
           ),
-          FFButtonWidget(
-            onPressed: () async {
-              _model.soundPlayer3 ??= AudioPlayer();
-              if (_model.soundPlayer3!.playing) {
-                await _model.soundPlayer3!.stop();
-              }
-              _model.soundPlayer3!.setVolume(1.0);
-              _model.soundPlayer3!
-                  .setAsset('assets/audios/question_Incorrect.mp3')
-                  .then((_) => _model.soundPlayer3!.play());
-            },
-            text: FFLocalizations.of(context).getText(
-              'gp1mq26d' /* 不正解 */,
-            ),
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).primary,
-              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Figtree',
-                    color: Colors.white,
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              FFButtonWidget(
+                onPressed: () async {
+                  _model.soundPlayer2 ??= AudioPlayer();
+                  if (_model.soundPlayer2!.playing) {
+                    await _model.soundPlayer2!.stop();
+                  }
+                  _model.soundPlayer2!.setVolume(1.0);
+                  _model.soundPlayer2!
+                      .setAsset('assets/audios/question_correct.mp3')
+                      .then((_) => _model.soundPlayer2!.play());
+
+                  await widget.onCorrect?.call();
+                },
+                text: FFLocalizations.of(context).getText(
+                  'aknaslnm' /* 正解 */,
+                ),
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Figtree',
+                        color: Colors.white,
+                      ),
+                  elevation: 3.0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
                   ),
-              elevation: 3.0,
-              borderSide: BorderSide(
-                color: Colors.transparent,
-                width: 1.0,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+              FFButtonWidget(
+                onPressed: () async {
+                  _model.soundPlayer3 ??= AudioPlayer();
+                  if (_model.soundPlayer3!.playing) {
+                    await _model.soundPlayer3!.stop();
+                  }
+                  _model.soundPlayer3!.setVolume(1.0);
+                  _model.soundPlayer3!
+                      .setAsset('assets/audios/question_Incorrect.mp3')
+                      .then((_) => _model.soundPlayer3!.play());
+                },
+                text: FFLocalizations.of(context).getText(
+                  'gp1mq26d' /* 不正解 */,
+                ),
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Figtree',
+                        color: Colors.white,
+                      ),
+                  elevation: 3.0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ],
           ),
         ].divide(SizedBox(height: 8.0)),
       ),

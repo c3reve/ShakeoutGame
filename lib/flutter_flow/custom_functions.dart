@@ -14,6 +14,13 @@ import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-List<int> generateLevels(int levels) {
-  return List.generate(levels, (index) => index + 1);
+DocumentReference quizReferenceFromId(String id) {
+  return FirebaseFirestore.instance.collection('quizzes').doc(id);
+}
+
+QuizDataStruct localizeQuiz(
+  QuizzesRecord quiz,
+  String language,
+) {
+  return new QuizDataStruct();
 }

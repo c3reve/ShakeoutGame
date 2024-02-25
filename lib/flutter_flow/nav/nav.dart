@@ -10,6 +10,8 @@ import '/backend/schema/enums/enums.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -92,32 +94,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MainMenu',
           path: '/main',
+          requireAuth: true,
           builder: (context, params) => MainMenuWidget(),
         ),
         FFRoute(
           name: 'Settings',
           path: '/settings',
           builder: (context, params) => SettingsWidget(),
-        ),
-        FFRoute(
-          name: 'SelectLevel',
-          path: '/selectLevel',
-          builder: (context, params) => SelectLevelWidget(),
-        ),
-        FFRoute(
-          name: 'GamePage',
-          path: '/gamePage',
-          builder: (context, params) => GamePageWidget(
-            correctOption: params.getParam('correctOption', ParamType.String),
-            currentLevel: params.getParam('currentLevel', ParamType.int),
-          ),
-        ),
-        FFRoute(
-          name: 'ConfettiWinnerPage',
-          path: '/confettiWinnerPage',
-          builder: (context, params) => ConfettiWinnerPageWidget(
-            currentLevel: params.getParam('currentLevel', ParamType.int),
-          ),
         ),
         FFRoute(
           name: 'LeaderBoard',
@@ -129,6 +112,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/play',
           builder: (context, params) => PlayWidget(
             mode: params.getParam<GameMode>('mode', ParamType.Enum),
+            scheduleRef: params.getParam('scheduleRef',
+                ParamType.DocumentReference, false, ['schedules']),
           ),
         ),
         FFRoute(
@@ -338,7 +323,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,8 +17,6 @@ class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   double? soundSliderValue;
   // State field(s) for musicSwitch widget.
   bool? musicSwitchValue;
-  // State field(s) for darkModeSwitch widget.
-  bool? darkModeSwitchValue;
   // State field(s) for vibrationSwitch widget.
   bool? vibrationSwitchValue;
 
