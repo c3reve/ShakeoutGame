@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "556345856610",
+    "project_id": "shakeout-game-r5t581",
+    "storage_bucket": "shakeout-game-r5t581.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556345856610:android:a5c7b2b4ae0a7ddbdf373b",
+        "android_client_info": {
+          "package_name": "jp.co.c3reve.shakeoutgame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBqaQTKn3gjyHf9M1S56_3Z8f1ju6zPck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
