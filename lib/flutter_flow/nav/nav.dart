@@ -100,6 +100,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Settings',
           path: '/settings',
+          requireAuth: true,
           builder: (context, params) => SettingsWidget(),
         ),
         FFRoute(
@@ -110,6 +111,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Play',
           path: '/play',
+          requireAuth: true,
           builder: (context, params) => PlayWidget(
             mode: params.getParam<GameMode>('mode', ParamType.Enum),
             scheduleRef: params.getParam('scheduleRef',
@@ -119,19 +121,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Tutorial',
           path: '/tutorial',
+          requireAuth: true,
           builder: (context, params) => TutorialWidget(),
         ),
         FFRoute(
           name: 'Success',
           path: '/success',
+          requireAuth: true,
+          asyncParams: {
+            'quizeDoc': getDoc(['quizzes'], QuizzesRecord.fromSnapshot),
+          },
           builder: (context, params) => SuccessWidget(
             time: params.getParam('time', ParamType.int),
+            scoreRef: params.getParam(
+                'scoreRef', ParamType.DocumentReference, false, ['scores']),
+            mode: params.getParam<GameMode>('mode', ParamType.Enum),
+            quizeDoc: params.getParam('quizeDoc', ParamType.Document),
           ),
         ),
         FFRoute(
           name: 'TopPage',
           path: '/topPage',
           builder: (context, params) => TopPageWidget(),
+        ),
+        FFRoute(
+          name: 'develop_quiz',
+          path: '/developQuiz',
+          builder: (context, params) => DevelopQuizWidget(),
+        ),
+        FFRoute(
+          name: 'develop_menu',
+          path: '/developMenu',
+          builder: (context, params) => DevelopMenuWidget(),
+        ),
+        FFRoute(
+          name: 'develop_sound',
+          path: '/developSound',
+          builder: (context, params) => DevelopSoundWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

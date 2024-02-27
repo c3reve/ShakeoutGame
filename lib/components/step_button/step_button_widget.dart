@@ -249,24 +249,40 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                       width: double.infinity,
                       height: double.infinity,
                       decoration: BoxDecoration(),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onLongPress: () async {
-                          HapticFeedback.selectionClick();
-                          await widget.onDone?.call();
+                      child: Builder(
+                        builder: (context) {
+                          if (widget.isEnable) {
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onLongPress: () async {
+                                HapticFeedback.selectionClick();
+                                await widget.onDone?.call();
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/hold_on.png',
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/hold_on.png',
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          }
                         },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/hold_on.png',
-                            width: 100.0,
-                            height: 100.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
                       ),
                     );
                   } else {

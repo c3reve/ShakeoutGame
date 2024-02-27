@@ -6,3 +6,6 @@ export '/pages/play/play_widget.dart' show PlayWidget;
 export '/pages/tutorial/tutorial_widget.dart' show TutorialWidget;
 export '/pages/success/success_widget.dart' show SuccessWidget;
 export '/pages/top_page/top_page_widget.dart' show TopPageWidget;
+export '/develop/develop_quiz/develop_quiz_widget.dart' show DevelopQuizWidget;
+export '/develop_menu/develop_menu_widget.dart' show DevelopMenuWidget;
+export '/develop_sound/develop_sound_widget.dart' show DevelopSoundWidget;

@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -79,44 +80,52 @@ class _JustSliderWidgetState extends State<JustSliderWidget> {
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: 300.0,
-                    child: Slider(
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      inactiveColor: FlutterFlowTheme.of(context).alternate,
-                      min: 0.0,
-                      max: 100.0,
-                      value: _model.sliderValue ??=
-                          widget.initialValue.toDouble(),
-                      label: _model.sliderValue.toString(),
-                      divisions: 100,
-                      onChanged: (newValue) async {
-                        newValue = double.parse(newValue.toStringAsFixed(2));
-                        setState(() => _model.sliderValue = newValue);
-                        await widget.onChange?.call(
-                          _model.csCorrectValue == _model.sliderValue,
-                        );
-                      },
+              Container(
+                width: 300.0,
+                decoration: BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 300.0,
+                      child: Slider(
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        inactiveColor: FlutterFlowTheme.of(context).alternate,
+                        min: 0.0,
+                        max: 100.0,
+                        value: _model.sliderValue ??=
+                            widget.initialValue.toDouble(),
+                        label: _model.sliderValue.toString(),
+                        divisions: 100,
+                        onChanged: (newValue) async {
+                          newValue = double.parse(newValue.toStringAsFixed(2));
+                          setState(() => _model.sliderValue = newValue);
+                          await widget.onChange?.call(
+                            _model.csCorrectValue == _model.sliderValue,
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ClipRRect(
+                    Align(
+                      alignment: AlignmentDirectional(
+                          valueOrDefault<double>(
+                            functions
+                                .normalizationAlignment(_model.csCorrectValue!),
+                            0.0,
+                          ),
+                          0.0),
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
-                          'assets/images/cover.png',
-                          width: 20.0,
-                          height: 20.0,
+                          'assets/images/DALLE_2024-02-26_11.04.58_-_Create_a_minimalist_monochrome_illustration_of_a_person_crouching,_focusing_on_clean_lines_and_geometric_simplicity._The_person_is_abstracted_into_a_s.webp',
+                          width: 50.0,
+                          height: 50.0,
                           fit: BoxFit.contain,
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
               Text(
                 FFLocalizations.of(context).getText(

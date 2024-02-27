@@ -17,36 +17,35 @@ class ScoresRecord extends FirestoreRecord {
     _initializeFields();
   }
 
+  // "userRef" field.
+  DocumentReference? _userRef;
+  DocumentReference? get userRef => _userRef;
+  bool hasUserRef() => _userRef != null;
+
   // "scheduleRef" field.
   DocumentReference? _scheduleRef;
   DocumentReference? get scheduleRef => _scheduleRef;
   bool hasScheduleRef() => _scheduleRef != null;
-
-  // "created_time" field.
-  DateTime? _createdTime;
-  DateTime? get createdTime => _createdTime;
-  bool hasCreatedTime() => _createdTime != null;
 
   // "time" field.
   int? _time;
   int get time => _time ?? 0;
   bool hasTime() => _time != null;
 
-  DocumentReference get parentReference => reference.parent.parent!;
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
 
   void _initializeFields() {
+    _userRef = snapshotData['userRef'] as DocumentReference?;
     _scheduleRef = snapshotData['scheduleRef'] as DocumentReference?;
-    _createdTime = snapshotData['created_time'] as DateTime?;
     _time = castToType<int>(snapshotData['time']);
+    _createdTime = snapshotData['created_time'] as DateTime?;
   }
 
-  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
-      parent != null
-          ? parent.collection('scores')
-          : FirebaseFirestore.instance.collectionGroup('scores');
-
-  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
-      parent.collection('scores').doc(id);
+  static CollectionReference get collection =>
+      FirebaseFirestore.instance.collection('scores');
 
   static Stream<ScoresRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => ScoresRecord.fromSnapshot(s));
@@ -79,15 +78,17 @@ class ScoresRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createScoresRecordData({
+  DocumentReference? userRef,
   DocumentReference? scheduleRef,
-  DateTime? createdTime,
   int? time,
+  DateTime? createdTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
+      'userRef': userRef,
       'scheduleRef': scheduleRef,
-      'created_time': createdTime,
       'time': time,
+      'created_time': createdTime,
     }.withoutNulls,
   );
 
@@ -99,14 +100,15 @@ class ScoresRecordDocumentEquality implements Equality<ScoresRecord> {
 
   @override
   bool equals(ScoresRecord? e1, ScoresRecord? e2) {
-    return e1?.scheduleRef == e2?.scheduleRef &&
-        e1?.createdTime == e2?.createdTime &&
-        e1?.time == e2?.time;
+    return e1?.userRef == e2?.userRef &&
+        e1?.scheduleRef == e2?.scheduleRef &&
+        e1?.time == e2?.time &&
+        e1?.createdTime == e2?.createdTime;
   }
 
   @override
-  int hash(ScoresRecord? e) =>
-      const ListEquality().hash([e?.scheduleRef, e?.createdTime, e?.time]);
+  int hash(ScoresRecord? e) => const ListEquality()
+      .hash([e?.userRef, e?.scheduleRef, e?.time, e?.createdTime]);
 
   @override
   bool isValidKey(Object? o) => o is ScoresRecord;

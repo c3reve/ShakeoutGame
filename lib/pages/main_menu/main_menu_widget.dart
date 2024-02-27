@@ -56,6 +56,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
+                constraints: BoxConstraints(
+                  maxWidth: FFAppConstants.ContentMaxWidth,
+                ),
                 decoration: BoxDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -182,6 +185,54 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                             ),
                           ),
                         ),
+                        if (valueOrDefault<bool>(
+                            currentUserDocument?.isDeveloper, false))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 0.0),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'develop_menu',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.bottomToTop,
+                                        duration: Duration(milliseconds: 300),
+                                      ),
+                                    },
+                                  );
+                                },
+                                text: FFLocalizations.of(context).getText(
+                                  '7whih7pd' /* 開発用 */,
+                                ),
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 56.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).accent1,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                      ),
+                                  elevation: 0.0,
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                            ),
+                          ),
                       ].divide(SizedBox(height: 12.0)),
                     ),
                   ],

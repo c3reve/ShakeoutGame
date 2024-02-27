@@ -11,28 +11,26 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/custom_code/actions/init_audio_player.dart';
 import 'package:just_audio/just_audio.dart';
 
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the green button on the right!
+Future playOrPauseAudio(
+  String audioPath,
+  bool isPause,
+) async {
+  var _audioPlayer = AudioPlayerSingleton().audioPlayer!;
 
-Future initAudioPlayer() async {
-  AudioPlayerSingleton().init();
-}
-
-class AudioPlayerSingleton {
-  static final AudioPlayerSingleton _singleton =
-      AudioPlayerSingleton._internal();
-
-  factory AudioPlayerSingleton() {
-    return _singleton;
+  if (_audioPlayer.playing) {
+    await _audioPlayer.stop();
   }
 
-  AudioPlayerSingleton._internal();
-
-  AudioPlayer? audioPlayer;
-
-  init() {
-    audioPlayer = AudioPlayer();
+  if (!_audioPlayer.playing && isPause == false) {
+    await _audioPlayer.setAudioSource(
+      AudioSource.asset(audioPath),
+      initialIndex: 0,
+      initialPosition: Duration.zero,
+    );
+    await _audioPlayer.play();
+    _audioPlayer.setLoopMode(LoopMode.all);
   }
 }

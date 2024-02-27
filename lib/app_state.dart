@@ -30,6 +30,10 @@ class FFAppState extends ChangeNotifier {
       _lastAchievedLevel =
           prefs.getInt('ff_lastAchievedLevel') ?? _lastAchievedLevel;
     });
+    _safeInit(() {
+      _isVibrationAllowed =
+          prefs.getBool('ff_isVibrationAllowed') ?? _isVibrationAllowed;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -118,6 +122,13 @@ class FFAppState extends ChangeNotifier {
   double get currentMusicVolume => _currentMusicVolume;
   set currentMusicVolume(double _value) {
     _currentMusicVolume = _value;
+  }
+
+  bool _isVibrationAllowed = true;
+  bool get isVibrationAllowed => _isVibrationAllowed;
+  set isVibrationAllowed(bool _value) {
+    _isVibrationAllowed = _value;
+    prefs.setBool('ff_isVibrationAllowed', _value);
   }
 }
 

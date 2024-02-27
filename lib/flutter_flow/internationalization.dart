@@ -119,6 +119,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': '設定',
       'en': 'setting',
     },
+    '7whih7pd': {
+      'ja': '開発用',
+      'en': 'For development',
+    },
     'xeijx7fg': {
       'ja': 'Home',
       'en': 'Home',
@@ -126,6 +130,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Settings
   {
+    'i8d4xdx1': {
+      'ja': 'ニックネーム',
+      'en': '',
+    },
     'y19j4wyr': {
       'ja': 'Sound',
       'en': 'Sound',
@@ -140,14 +148,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'xhaw44e7': {
       'ja': 'LEADERBOARD',
-      'en': 'LEADER BOARD',
+      'en': 'LEADERBOARD',
     },
     'xr2qhw6n': {
       'ja': 'Logout',
       'en': 'Logout',
     },
     'fth0uaoi': {
-      'ja': 'Settings',
+      'ja': '設定',
       'en': 'Settings',
     },
     'fknrq7qx': {
@@ -159,98 +167,173 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'mitx0bah': {
       'ja': 'Leaderboard',
-      'en': '',
+      'en': 'Leaderboard',
     },
     '2wtmfw1d': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Play
   {
     '245emor1': {
       'ja': '中止',
-      'en': '',
+      'en': 'cancel',
     },
-    'wv138q5m': {
-      'ja': 'DROP を下にスワイプ！',
-      'en': '',
+    'xvn18l2d': {
+      'ja': '地震が発生したら体勢を低くして地面に近づきましょう。',
+      'en': 'If an earthquake occurs, stay low and get close to the ground.',
     },
-    '9fuasr3y': {
-      'ja': 'Button',
-      'en': '',
+    'kpohh8hb': {
+      'ja': '固定されたデスクやテーブルの下に入り、頭を守りましょう。\n頭を守るものがない場合は、腕や荷物を使って、頭を守りましょう。',
+      'en':
+          'Protect your head by getting under a fixed desk or table.\nIf you don\'t have something to protect your head, use your arms or luggage to protect your head.',
     },
-    'j3n3lhv5': {
-      'ja': 'COVER を右にスワイプ！',
-      'en': '',
+    'fnmlbbtm': {
+      'ja': '揺れが止まるまで動かずじっとしていましょう。',
+      'en': 'Stay still and do not move until the shaking stops.',
     },
-    'hkh03ayt': {
-      'ja': 'HOLD ON を長押し\n\n本当は揺れがおさまるまでにしたいが\nボタン話したタイミングが取れないので\n一旦長押し',
-      'en': '',
+    '2z6gscgr': {
+      'ja': 'DROPを下にスワイプ！',
+      'en': 'Swipe down on DROP!',
+    },
+    'rtq7r6xo': {
+      'ja': 'COVERを右にスワイプ！',
+      'en': 'Swipe right on COVER!',
+    },
+    '6eq3vrfr': {
+      'ja': 'HOLD ONを長押し！',
+      'en': 'Long press HOLD ON!',
     },
     'giodltuy': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Tutorial
   {
     'mu1wvlin': {
       'ja': '説明',
-      'en': '',
+      'en': 'explanation',
     },
     'hl81aeg7': {
       'ja': 'チュートリアルを開始',
-      'en': '',
+      'en': 'Start tutorial',
     },
     'y3dkyvef': {
       'ja': 'Page Title',
-      'en': '',
+      'en': 'Page Title',
     },
     'aggmayjp': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Success
   {
     'x8f65l8n': {
       'ja': 'おめでとう！\n避難に成功しました！',
-      'en': '',
+      'en': 'Congratulations!\nSuccessful evacuation!',
     },
     'qzn7ies7': {
       'ja': '記録',
-      'en': '',
+      'en': 'record',
+    },
+    '2zhjrtlu': {
+      'ja': '秒',
+      'en': 'seconds',
     },
     'w1wytlbo': {
       'ja':
-          'ランダムでアイテム（Googleウォレットパス）を獲得\n基本的にはアカウントなしで遊べるが、アイテムの獲得やスコアランキングの登録はアカウント登録が必須。',
-      'en': '',
+          'フリープレイでは記録の確認のみになります。\n\nアプリの通知をオンにすると実際の地震を想定した訓練が可能で、ランキングの登録やアイテムの獲得ができます。',
+      'en':
+          'Free play only allows you to check your records.\n\nIf you turn on app notifications, you can train for an actual earthquake, register for rankings, and earn items.',
     },
     '8kbstuzd': {
-      'ja': 'Done',
-      'en': '',
+      'ja': 'タイトルへ',
+      'en': 'go to Title',
     },
     'b0n4fwp2': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // TopPage
   {
     '297sumt4': {
       'ja': 'シェイクアウト\nゲーム',
-      'en': '',
+      'en': 'shake out\ngame',
     },
     '87dm7fwb': {
       'ja': 'Tap to start',
-      'en': '',
+      'en': 'Tap to start',
     },
     'w87yp6rz': {
       'ja': '© 2022 C3REVE,Inc. All Right Reserved.',
-      'en': '',
+      'en': '© 2022 C3REVE,Inc. All Right Reserved.',
     },
     '91egtzsk': {
+      'ja': 'Home',
+      'en': 'Home',
+    },
+  },
+  // develop_quiz
+  {
+    'q2lcrnoe': {
+      'ja': 'Page Title',
+      'en': 'Page Title',
+    },
+    'q7e1mrck': {
+      'ja': 'Home',
+      'en': 'Home',
+    },
+  },
+  // develop_menu
+  {
+    'r7xmixea': {
+      'ja': 'クイズ',
+      'en': '',
+    },
+    '68nhh8k6': {
+      'ja': 'Subtitle goes here...',
+      'en': '',
+    },
+    'oghe6zf7': {
+      'ja': 'サウンド',
+      'en': '',
+    },
+    'x4laxk78': {
+      'ja': 'Subtitle goes here...',
+      'en': '',
+    },
+    'hgdzfzbl': {
+      'ja': 'Develop',
+      'en': '',
+    },
+    'zmuskhib': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // develop_sound
+  {
+    'pljga3pz': {
+      'ja': 'Play',
+      'en': '',
+    },
+    'x7irpmvs': {
+      'ja': 'Stop',
+      'en': '',
+    },
+    '9fuasr3y': {
+      'ja': 'Button',
+      'en': '',
+    },
+    '3kuaqcfe': {
+      'ja': 'Page Title',
+      'en': 'Page Title',
+    },
+    'm3g13658': {
       'ja': 'Home',
       'en': '',
     },
@@ -259,89 +342,97 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'vkl381ay': {
       'ja': 'Rank',
-      'en': '',
+      'en': 'Rank',
     },
     'fxfxr9eb': {
       'ja': '456',
-      'en': '',
+      'en': '456',
     },
     '8bqqhz30': {
       'ja': 'Points',
-      'en': '',
+      'en': 'Points',
     },
     'ykb734if': {
       'ja': '2577',
-      'en': '',
+      'en': '2577',
     },
   },
   // LBRankPointsCurrentUser
   {
     '6wdko7jv': {
       'ja': 'Rank',
-      'en': '',
+      'en': 'Rank',
     },
     'gymf9iun': {
       'ja': '456',
-      'en': '',
+      'en': '456',
     },
     'yye4p0w8': {
       'ja': 'Points',
-      'en': '',
+      'en': 'Points',
     },
   },
   // LBRankPointsOtherUser
   {
     'fcb4bw72': {
       'ja': 'Rank',
-      'en': '',
+      'en': 'Rank',
     },
     'h2l39c0i': {
       'ja': '456',
-      'en': '',
+      'en': '456',
     },
     's8dpbpdz': {
       'ja': 'Points',
-      'en': '',
-    },
-  },
-  // Quiz
-  {
-    'r49ue5br': {
-      'ja': 'Hello World',
-      'en': '',
-    },
-    'aknaslnm': {
-      'ja': '正解',
-      'en': '',
-    },
-    'gp1mq26d': {
-      'ja': '不正解',
-      'en': '',
+      'en': 'Points',
     },
   },
   // StepButton
   {
     'tthvyh5m': {
       'ja': 'クリア！',
-      'en': '',
+      'en': 'clear!',
     },
   },
   // JustSlider
   {
     'bl4yig2r': {
       'ja': '0',
-      'en': '',
+      'en': '0',
     },
     'mrb9g8pt': {
       'ja': '100',
+      'en': '100',
+    },
+  },
+  // DownSlider
+  {
+    '9o7f3ly3': {
+      'ja': 'タップ',
+      'en': 'Tap',
+    },
+    '2un4himm': {
+      'ja': '丸が一番下にきた時にタップ！',
       'en': '',
+    },
+  },
+  // QuizResult
+  {
+    'cckekvdk': {
+      'ja': 'Q. ',
+      'en': 'Q.',
+    },
+    'ep46nq7e': {
+      'ja': 'A. ',
+      'en': 'A.',
     },
   },
   // Miscellaneous
   {
     'zzth9bry': {
       'ja': 'ランキングやアイテムの獲得ができるゲームは通知からのみ参加が可能です。',
-      'en': '',
+      'en':
+          'Games where you can earn rankings and items can only be played through notifications.',
     },
     '6s9x7osi': {
       'ja': '',

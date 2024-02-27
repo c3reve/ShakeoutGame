@@ -52,7 +52,12 @@ class UsersRecord extends FirestoreRecord {
   String get language => _language ?? '';
   bool hasLanguage() => _language != null;
 
-  // "doneTutorial" field.
+  // "is_developer" field.
+  bool? _isDeveloper;
+  bool get isDeveloper => _isDeveloper ?? false;
+  bool hasIsDeveloper() => _isDeveloper != null;
+
+  // "done_tutorial" field.
   bool? _doneTutorial;
   bool get doneTutorial => _doneTutorial ?? false;
   bool hasDoneTutorial() => _doneTutorial != null;
@@ -65,7 +70,8 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _language = snapshotData['language'] as String?;
-    _doneTutorial = snapshotData['doneTutorial'] as bool?;
+    _isDeveloper = snapshotData['is_developer'] as bool?;
+    _doneTutorial = snapshotData['done_tutorial'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +115,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   String? language,
+  bool? isDeveloper,
   bool? doneTutorial,
 }) {
   final firestoreData = mapToFirestore(
@@ -120,7 +127,8 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'language': language,
-      'doneTutorial': doneTutorial,
+      'is_developer': isDeveloper,
+      'done_tutorial': doneTutorial,
     }.withoutNulls,
   );
 
@@ -139,6 +147,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.language == e2?.language &&
+        e1?.isDeveloper == e2?.isDeveloper &&
         e1?.doneTutorial == e2?.doneTutorial;
   }
 
@@ -151,6 +160,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.language,
+        e?.isDeveloper,
         e?.doneTutorial
       ]);
 

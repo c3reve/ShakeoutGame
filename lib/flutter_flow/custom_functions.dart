@@ -14,13 +14,33 @@ import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-DocumentReference quizReferenceFromId(String id) {
-  return FirebaseFirestore.instance.collection('quizzes').doc(id);
+String translateFromAuthLanguage(TranslateStringStruct target) {
+  final language = currentUserDocument?.language != null
+      ? currentUserDocument?.language
+      : 'ja';
+  return target.toMap()[language];
 }
 
-QuizDataStruct localizeQuiz(
-  QuizzesRecord quiz,
-  String language,
-) {
-  return new QuizDataStruct();
+List<TranslateStringStruct> translateMapToList(
+    List<TranslateStringStruct> data) {
+  print(data);
+  return (data as dynamic).entries.map((e) => e.value).toList();
+}
+
+List<String> splitTranslate(String str) {
+  return str.split("\n");
+}
+
+String msToString(int ms) {
+  // Convert millisecond number to m:s:ms string
+  final Duration duration = Duration(milliseconds: ms);
+  final int seconds = duration.inSeconds;
+  final int milliseconds = duration.inMilliseconds.remainder(1000);
+  return '${seconds.toString()}.${milliseconds.toString()}';
+}
+
+double? normalizationAlignment(double inputValue) {
+  // Function to subtract 50 from the input value, divide by 100, and return as an double type
+  double result = 2 * (inputValue - 50) / 100;
+  return result;
 }

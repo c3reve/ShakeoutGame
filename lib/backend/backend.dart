@@ -134,24 +134,22 @@ Future<List<SchedulesRecord>> querySchedulesRecordOnce({
 
 /// Functions to query ScoresRecords (as a Stream and as a Future).
 Future<int> queryScoresRecordCount({
-  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      ScoresRecord.collection(parent),
+      ScoresRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
 Stream<List<ScoresRecord>> queryScoresRecord({
-  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      ScoresRecord.collection(parent),
+      ScoresRecord.collection,
       ScoresRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
@@ -159,13 +157,12 @@ Stream<List<ScoresRecord>> queryScoresRecord({
     );
 
 Future<List<ScoresRecord>> queryScoresRecordOnce({
-  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      ScoresRecord.collection(parent),
+      ScoresRecord.collection,
       ScoresRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
