@@ -117,11 +117,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'naw8gn6b': {
       'ja': 'ランキング',
-      'en': 'setting',
+      'en': 'Ranking',
     },
     'hf1hdpl1': {
       'ja': '設定',
-      'en': '',
+      'en': 'setting',
     },
     '7whih7pd': {
       'ja': '開発用',
@@ -136,31 +136,31 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'i8d4xdx1': {
       'ja': 'ニックネーム',
-      'en': '',
+      'en': 'nickname',
     },
     '2r9iqu4e': {
       'ja': '効果音',
-      'en': '',
+      'en': 'Sound effect',
     },
     'dvjbrxng': {
       'ja': 'BGM',
-      'en': 'Music',
+      'en': 'BGM',
     },
     'y19j4wyr': {
       'ja': 'BGMの音量',
-      'en': 'Sound',
+      'en': 'BGM volume',
     },
     '9pd1oliu': {
       'ja': '振動',
-      'en': 'Vibration',
+      'en': 'vibration',
     },
     'xhaw44e7': {
       'ja': 'チュートリアル',
-      'en': 'LEADERBOARD',
+      'en': 'tutorial',
     },
     'bxfo3361': {
       'ja': 'LEADERBOARD',
-      'en': '',
+      'en': 'LEADER BOARD',
     },
     'xr2qhw6n': {
       'ja': 'Logout',
@@ -168,7 +168,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'fth0uaoi': {
       'ja': '設定',
-      'en': 'Settings',
+      'en': 'setting',
     },
     'fknrq7qx': {
       'ja': 'Home',
@@ -226,21 +226,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '03flc2uv': {
       'ja': 'シェイクアウトとは？',
-      'en': '',
+      'en': 'What is shakeout?',
     },
     'mu1wvlin': {
       'ja':
           'シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急避難訓練です。この訓練を通じて、個人、家族、学校、企業などが地震発生時の安全な行動を学び、実践することができます。',
-      'en': 'explanation',
+      'en':
+          'Shakeout drills are emergency evacuation drills designed to be used in the event of a large-scale earthquake. Through this training, individuals, families, schools, and businesses can learn and practice safe behavior in the event of an earthquake.',
     },
     'tw7a5d6d': {
       'ja': '「身を守る」（Drop, Cover, and Hold On)',
-      'en': '',
+      'en': '“Protect yourself” (Drop, Cover, and Hold On)',
     },
     'bsbjfzub': {
       'ja':
           '地震発生時、まずは「しゃがんで」安全な場所に移動し、「頭を守る」ために机やテーブルの下などに隠れ、「しっかりと持ちこたえる」ために何かしっかりとしたものにつかまります。',
-      'en': '',
+      'en':
+          'When an earthquake occurs, the first thing you should do is ``squat down\'\' and move to a safe place, hide under a desk or table to ``protect your head,\'\' and hold on to something solid to ``hold on.\'\'',
     },
     'hl81aeg7': {
       'ja': 'チュートリアルを開始',
@@ -248,7 +250,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'y3dkyvef': {
       'ja': 'チュートリアル',
-      'en': 'Page Title',
+      'en': 'tutorial',
     },
     'aggmayjp': {
       'ja': 'Home',
@@ -318,7 +320,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'r7xmixea': {
       'ja': 'クイズ',
-      'en': '',
+      'en': 'quiz',
     },
     '68nhh8k6': {
       'ja': '',
@@ -326,7 +328,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'opmsi8uy': {
       'ja': 'スライダー',
-      'en': '',
+      'en': 'slider',
     },
     'nd9q3b12': {
       'ja': '',
@@ -334,7 +336,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'oghe6zf7': {
       'ja': 'サウンド',
-      'en': '',
+      'en': 'sound',
     },
     'x4laxk78': {
       'ja': '',
@@ -342,7 +344,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6fanoipr': {
       'ja': 'ランキング',
-      'en': '',
+      'en': 'Ranking',
     },
     'syr0dcb0': {
       'ja': '',
@@ -350,25 +352,41 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hgdzfzbl': {
       'ja': 'Develop',
-      'en': '',
+      'en': 'Develop',
     },
     'zmuskhib': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // develop_sound
   {
     'pljga3pz': {
       'ja': 'Play Audio',
-      'en': '',
+      'en': 'Play Audio',
     },
     'x7irpmvs': {
       'ja': 'Stop',
-      'en': '',
+      'en': 'Stop',
     },
     '9fuasr3y': {
       'ja': 'Sound',
+      'en': 'Sound',
+    },
+    '9yawe5ek': {
+      'ja': '効果音',
+      'en': '',
+    },
+    'x5emcc8n': {
+      'ja': 'BGM',
+      'en': '',
+    },
+    'xive42n9': {
+      'ja': 'BGMの音量',
+      'en': '',
+    },
+    'bqh2jp32': {
+      'ja': 'Button',
       'en': '',
     },
     '3kuaqcfe': {
@@ -377,7 +395,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'm3g13658': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Ranking
@@ -462,7 +480,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'rrfjl5w8': {
       'ja': 'スライドで頭をカバー！',
-      'en': 'Cover people\'s heads with slides!',
+      'en': 'Cover your head with a slide!',
     },
     'bl4yig2r': {
       'ja': '0',
@@ -481,7 +499,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2un4himm': {
       'ja': '円の中に入った時にタップ！',
-      'en': '',
+      'en': 'Tap when it\'s inside the circle!',
     },
   },
   // QuizResult

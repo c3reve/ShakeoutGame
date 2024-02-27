@@ -158,7 +158,8 @@ class _JustSliderWidgetState extends State<JustSliderWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 14.0, 0.0, 0.0),
                                     child: Text(
-                                      _model.csCorrectValue!.toString(),
+                                      ((_model.csCorrectValue!).toInt())
+                                          .toString(),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

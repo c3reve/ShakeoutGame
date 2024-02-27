@@ -204,7 +204,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(1.0, 0.0),
                                 child: Switch.adaptive(
-                                  value: _model.musicSwitchValue1 ??= true,
+                                  value: _model.musicSwitchValue1 ??=
+                                      FFAppState().isSoundOn,
                                   onChanged: (newValue) async {
                                     setState(() =>
                                         _model.musicSwitchValue1 = newValue!);
@@ -257,7 +258,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(1.0, 0.0),
                                 child: Switch.adaptive(
-                                  value: _model.musicSwitchValue2 ??= true,
+                                  value: _model.musicSwitchValue2 ??=
+                                      FFAppState().isBgmOn,
                                   onChanged: (newValue) async {
                                     setState(() =>
                                         _model.musicSwitchValue2 = newValue!);
