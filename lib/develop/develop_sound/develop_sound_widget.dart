@@ -2,10 +2,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'develop_sound_model.dart';
 export 'develop_sound_model.dart';
@@ -89,13 +89,17 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
-                      await actions.playAssetAudio(
-                        'cover.mp3',
-                        true,
+                      unawaited(
+                        () async {
+                          await actions.playAssetAudio(
+                            'cover.mp3',
+                            true,
+                          );
+                        }(),
                       );
                     },
                     text: FFLocalizations.of(context).getText(
-                      'pljga3pz' /* Play */,
+                      'pljga3pz' /* Play Audio */,
                     ),
                     options: FFButtonOptions(
                       height: 40.0,
@@ -119,9 +123,10 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      await actions.playOrPauseAudio(
-                        'assets/audios/earthquake.mp3',
-                        true,
+                      unawaited(
+                        () async {
+                          await actions.stopAudio();
+                        }(),
                       );
                     },
                     text: FFLocalizations.of(context).getText(
@@ -151,17 +156,12 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  _model.soundPlayer ??= AudioPlayer();
-                  if (_model.soundPlayer!.playing) {
-                    await _model.soundPlayer!.stop();
-                  }
-                  _model.soundPlayer!.setVolume(1.0);
-                  _model.soundPlayer!
-                      .setAsset('assets/audios/drop.mp3')
-                      .then((_) => _model.soundPlayer!.play());
+                  await actions.playAssetSound(
+                    'drop.mp3',
+                  );
                 },
                 text: FFLocalizations.of(context).getText(
-                  '9fuasr3y' /* Button */,
+                  '9fuasr3y' /* Sound */,
                 ),
                 options: FFButtonOptions(
                   height: 40.0,

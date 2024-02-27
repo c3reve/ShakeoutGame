@@ -45,7 +45,7 @@ class _TutorialWidgetState extends State<TutorialWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).tertiary,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
@@ -81,17 +81,41 @@ class _TutorialWidgetState extends State<TutorialWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 FFLocalizations.of(context).getText(
-                  'mu1wvlin' /* 説明 */,
+                  'cs6sd6et' /* シェイクアウトとは？ */,
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Figtree',
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      fontSize: 38.0,
+                    ),
+              ),
+              Text(
+                FFLocalizations.of(context).getText(
+                  'mu1wvlin' /* シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急... */,
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Figtree',
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      fontSize: 16.0,
+                    ),
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(0.0),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');

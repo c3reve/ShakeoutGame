@@ -212,8 +212,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Tutorial
   {
+    'cs6sd6et': {
+      'ja': 'シェイクアウトとは？',
+      'en': '',
+    },
     'mu1wvlin': {
-      'ja': '説明',
+      'ja':
+          'シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急避難訓練です。この訓練を通じて、個人、家族、学校、企業などが地震発生時の安全な行動を学び、実践することができます。',
       'en': 'explanation',
     },
     'hl81aeg7': {
@@ -318,7 +323,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // develop_sound
   {
     'pljga3pz': {
-      'ja': 'Play',
+      'ja': 'Play Audio',
       'en': '',
     },
     'x7irpmvs': {
@@ -326,7 +331,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     '9fuasr3y': {
-      'ja': 'Button',
+      'ja': 'Sound',
       'en': '',
     },
     '3kuaqcfe': {
