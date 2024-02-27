@@ -116,8 +116,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Start',
     },
     'naw8gn6b': {
-      'ja': '設定',
+      'ja': 'ランキング',
       'en': 'setting',
+    },
+    'hf1hdpl1': {
+      'ja': '設定',
+      'en': '',
     },
     '7whih7pd': {
       'ja': '開発用',
@@ -134,21 +138,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': 'ニックネーム',
       'en': '',
     },
-    'y19j4wyr': {
-      'ja': 'Sound',
-      'en': 'Sound',
+    '2r9iqu4e': {
+      'ja': '効果音',
+      'en': '',
     },
     'dvjbrxng': {
-      'ja': 'Music',
+      'ja': 'BGM',
       'en': 'Music',
     },
+    'y19j4wyr': {
+      'ja': 'BGMの音量',
+      'en': 'Sound',
+    },
     '9pd1oliu': {
-      'ja': 'Vibration',
+      'ja': '振動',
       'en': 'Vibration',
     },
     'xhaw44e7': {
-      'ja': 'LEADERBOARD',
+      'ja': 'チュートリアル',
       'en': 'LEADERBOARD',
+    },
+    'bxfo3361': {
+      'ja': 'LEADERBOARD',
+      'en': '',
     },
     'xr2qhw6n': {
       'ja': 'Logout',
@@ -212,7 +224,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Tutorial
   {
-    'cs6sd6et': {
+    '03flc2uv': {
       'ja': 'シェイクアウトとは？',
       'en': '',
     },
@@ -221,12 +233,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急避難訓練です。この訓練を通じて、個人、家族、学校、企業などが地震発生時の安全な行動を学び、実践することができます。',
       'en': 'explanation',
     },
+    'tw7a5d6d': {
+      'ja': '「身を守る」（Drop, Cover, and Hold On)',
+      'en': '',
+    },
+    'bsbjfzub': {
+      'ja':
+          '地震発生時、まずは「しゃがんで」安全な場所に移動し、「頭を守る」ために机やテーブルの下などに隠れ、「しっかりと持ちこたえる」ために何かしっかりとしたものにつかまります。',
+      'en': '',
+    },
     'hl81aeg7': {
       'ja': 'チュートリアルを開始',
       'en': 'Start tutorial',
     },
     'y3dkyvef': {
-      'ja': 'Page Title',
+      'ja': 'チュートリアル',
       'en': 'Page Title',
     },
     'aggmayjp': {
@@ -303,11 +324,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': '',
       'en': '',
     },
+    'opmsi8uy': {
+      'ja': 'スライダー',
+      'en': '',
+    },
+    'nd9q3b12': {
+      'ja': '',
+      'en': '',
+    },
     'oghe6zf7': {
       'ja': 'サウンド',
       'en': '',
     },
     'x4laxk78': {
+      'ja': '',
+      'en': '',
+    },
+    '6fanoipr': {
+      'ja': 'ランキング',
+      'en': '',
+    },
+    'syr0dcb0': {
       'ja': '',
       'en': '',
     },
@@ -339,6 +376,28 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Page Title',
     },
     'm3g13658': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // Ranking
+  {
+    'dogp95en': {
+      'ja': 'Page Title',
+      'en': '',
+    },
+    '4yn84b5t': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // develop_slider
+  {
+    'fl5hzmxz': {
+      'ja': 'Page Title',
+      'en': '',
+    },
+    'q6n7sr1a': {
       'ja': 'Home',
       'en': '',
     },
@@ -401,6 +460,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // JustSlider
   {
+    'rrfjl5w8': {
+      'ja': 'スライドで頭をカバー！',
+      'en': 'Cover people\'s heads with slides!',
+    },
     'bl4yig2r': {
       'ja': '0',
       'en': '0',
@@ -417,7 +480,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Tap',
     },
     '2un4himm': {
-      'ja': '丸が一番下にきた時にタップ！',
+      'ja': '円の中に入った時にタップ！',
       'en': '',
     },
   },

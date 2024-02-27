@@ -156,8 +156,12 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  await actions.playAssetSound(
-                    'drop.mp3',
+                  unawaited(
+                    () async {
+                      await actions.playAssetSound(
+                        'drop.mp3',
+                      );
+                    }(),
                   );
                 },
                 text: FFLocalizations.of(context).getText(

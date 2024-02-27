@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -20,7 +21,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'play_model.dart';
 export 'play_model.dart';
@@ -96,16 +96,15 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      unawaited(
+        () async {
+          await actions.playAssetAudio(
+            'earthquake.mp3',
+            true,
+          );
+        }(),
+      );
       _model.timerController.onStartTimer();
-      _model.soundPlayer ??= AudioPlayer();
-      if (_model.soundPlayer!.playing) {
-        await _model.soundPlayer!.stop();
-      }
-      _model.soundPlayer!.setVolume(0.3);
-      _model.soundPlayer!
-          .setAsset('assets/audios/earthquake.mp3')
-          .then((_) => _model.soundPlayer!.play());
-
       if (widget.scheduleRef != null) {
         _model.schedule =
             await SchedulesRecord.getDocumentOnce(widget.scheduleRef!);
@@ -128,18 +127,20 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
         });
       }
 
-      // バイブレーション繰り返し
-      _model.vibrationTimer = InstantTimer.periodic(
-        duration: Duration(milliseconds: 500),
-        callback: (timer) async {
-          await actions.vibrationCancel();
-          await actions.vibration(
-            500,
-            null,
-          );
-        },
-        startImmediately: true,
-      );
+      if (!isWeb && FFAppState().isVibrationAllowed) {
+        // バイブレーション繰り返し
+        _model.vibrationTimer = InstantTimer.periodic(
+          duration: Duration(milliseconds: 1000),
+          callback: (timer) async {
+            await actions.vibrationCancel();
+            await actions.vibration(
+              500,
+              null,
+            );
+          },
+          startImmediately: true,
+        );
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -193,7 +194,11 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                     false;
                 if (confirmDialogResponse) {
                   _model.vibrationTimer?.cancel();
-                  _model.soundPlayer?.stop();
+                  unawaited(
+                    () async {
+                      await actions.stopAudio();
+                    }(),
+                  );
                   context.safePop();
                 }
               },
@@ -315,7 +320,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyLarge,
                                               ),
                                               Align(
                                                 alignment: AlignmentDirectional(
@@ -374,7 +379,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyLarge,
                                               ),
                                               wrapWithModel(
                                                 model: _model.justSliderModel,
@@ -440,7 +445,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium,
+                                                      .bodyLarge,
                                                 ),
                                                 wrapWithModel(
                                                   model: _model.quizModel,
@@ -619,7 +624,11 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                       context,
                                       step: _model.psNowStep,
                                     );
-                                    _model.soundPlayer?.stop();
+                                    unawaited(
+                                      () async {
+                                        await actions.stopAudio();
+                                      }(),
+                                    );
                                     _model.vibrationTimer?.cancel();
 
                                     context.goNamed(

@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -47,7 +48,7 @@ class _TutorialWidgetState extends State<TutorialWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).tertiary,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).tertiary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -65,7 +66,7 @@ class _TutorialWidgetState extends State<TutorialWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'y3dkyvef' /* Page Title */,
+              'y3dkyvef' /* チュートリアル */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Figtree',
@@ -74,78 +75,131 @@ class _TutorialWidgetState extends State<TutorialWidget> {
                 ),
           ),
           actions: [],
-          centerTitle: false,
-          elevation: 2.0,
+          centerTitle: true,
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                FFLocalizations.of(context).getText(
-                  'cs6sd6et' /* シェイクアウトとは？ */,
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Figtree',
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      fontSize: 38.0,
-                    ),
+          child: Align(
+            alignment: AlignmentDirectional(0.0, 0.0),
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: FFAppConstants.ContentMaxWidth,
               ),
-              Text(
-                FFLocalizations.of(context).getText(
-                  'mu1wvlin' /* シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急... */,
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Figtree',
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      fontSize: 16.0,
-                    ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(0.0),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.cover,
+              decoration: BoxDecoration(),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        '03flc2uv' /* シェイクアウトとは？ */,
                       ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Figtree',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            fontSize: 32.0,
+                          ),
                     ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: FFLocalizations.of(context).getText(
-                      'hl81aeg7' /* チュートリアルを開始 */,
-                    ),
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Figtree',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        'mu1wvlin' /* シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急... */,
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Figtree',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            fontSize: 14.0,
+                          ),
                     ),
-                  ),
-                ].divide(SizedBox(height: 16.0)),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          FFLocalizations.of(context).getText(
+                            'tw7a5d6d' /* 「身を守る」（Drop, Cover, and Hold O... */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Figtree',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 16.0,
+                                  ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 16.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          FFLocalizations.of(context).getText(
+                            'bsbjfzub' /* 地震発生時、まずは「しゃがんで」安全な場所に移動し、「頭を守... */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Figtree',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                  ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context.pushNamed(
+                              'Play',
+                              queryParameters: {
+                                'mode': serializeParam(
+                                  GameMode.Tutorial,
+                                  ParamType.Enum,
+                                ),
+                              }.withoutNulls,
+                            );
+                          },
+                          text: FFLocalizations.of(context).getText(
+                            'hl81aeg7' /* チュートリアルを開始 */,
+                          ),
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Figtree',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ].divide(SizedBox(height: 16.0)),
+                    ),
+                  ]
+                      .divide(SizedBox(height: 32.0))
+                      .addToStart(SizedBox(height: 32.0)),
+                ),
               ),
-            ].divide(SizedBox(height: 32.0)).addToStart(SizedBox(height: 32.0)),
+            ),
           ),
         ),
       ),

@@ -113,12 +113,60 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  context.pushNamed('develop_slider');
+                },
+                child: ListTile(
+                  title: Text(
+                    FFLocalizations.of(context).getText(
+                      'opmsi8uy' /* スライダー */,
+                    ),
+                    style: FlutterFlowTheme.of(context).titleLarge,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 20.0,
+                  ),
+                  tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  dense: false,
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
                   context.pushNamed('develop_sound');
                 },
                 child: ListTile(
                   title: Text(
                     FFLocalizations.of(context).getText(
                       'oghe6zf7' /* サウンド */,
+                    ),
+                    style: FlutterFlowTheme.of(context).titleLarge,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 20.0,
+                  ),
+                  tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  dense: false,
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed('Ranking');
+                },
+                child: ListTile(
+                  title: Text(
+                    FFLocalizations.of(context).getText(
+                      '6fanoipr' /* ランキング */,
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge,
                   ),

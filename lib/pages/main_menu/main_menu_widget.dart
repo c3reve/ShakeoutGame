@@ -100,19 +100,20 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                               16.0, 8.0, 16.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              context.goNamed(
-                                'Play',
-                                queryParameters: {
-                                  'mode': serializeParam(
-                                    valueOrDefault<bool>(
-                                            currentUserDocument?.doneTutorial,
-                                            false)
-                                        ? GameMode.FreePlay
-                                        : GameMode.Tutorial,
-                                    ParamType.Enum,
-                                  ),
-                                }.withoutNulls,
-                              );
+                              if (valueOrDefault<bool>(
+                                  currentUserDocument?.doneTutorial, false)) {
+                                context.goNamed(
+                                  'Play',
+                                  queryParameters: {
+                                    'mode': serializeParam(
+                                      GameMode.FreePlay,
+                                      ParamType.Enum,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                context.pushNamed('Tutorial');
+                              }
                             },
                             text: FFLocalizations.of(context).getText(
                               '45xdkaj0' /* はじめる */,
@@ -142,6 +143,50 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                             ),
                           ),
                         ),
+                        if (false)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'Ranking',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'naw8gn6b' /* ランキング */,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 56.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).accent1,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color: FlutterFlowTheme.of(context).info,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                            ),
+                          ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 0.0),
@@ -160,7 +205,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              'naw8gn6b' /* 設定 */,
+                              'hf1hdpl1' /* 設定 */,
                             ),
                             options: FFButtonOptions(
                               width: double.infinity,

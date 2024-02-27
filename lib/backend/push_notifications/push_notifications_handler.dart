@@ -133,6 +133,8 @@ final parametersBuilderMap =
   'develop_quiz': ParameterData.none(),
   'develop_menu': ParameterData.none(),
   'develop_sound': ParameterData.none(),
+  'Ranking': ParameterData.none(),
+  'develop_slider': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

@@ -158,6 +158,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'develop_sound',
           path: '/developSound',
           builder: (context, params) => DevelopSoundWidget(),
+        ),
+        FFRoute(
+          name: 'Ranking',
+          path: '/ranking',
+          builder: (context, params) => RankingWidget(),
+        ),
+        FFRoute(
+          name: 'develop_slider',
+          path: '/developSlider',
+          builder: (context, params) => DevelopSliderWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

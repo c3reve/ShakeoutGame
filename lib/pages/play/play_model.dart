@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -21,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
 class PlayModel extends FlutterFlowModel<PlayWidget> {
@@ -49,7 +49,6 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  AudioPlayer? soundPlayer;
   // Stores action output result for [Backend Call - Read Document] action in Play widget.
   SchedulesRecord? schedule;
   // Stores action output result for [Backend Call - Read Document] action in Play widget.

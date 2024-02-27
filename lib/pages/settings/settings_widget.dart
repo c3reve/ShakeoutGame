@@ -120,7 +120,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 ));
                               },
                             ),
-                            autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: FFLocalizations.of(context).getText(
@@ -169,6 +168,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                   fontFamily: 'Figtree',
                                   color: FlutterFlowTheme.of(context).info,
                                 ),
+                            maxLength: 20,
                             validator: _model.textControllerValidator
                                 .asValidator(context),
                           ),
@@ -186,7 +186,114 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             Expanded(
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'y19j4wyr' /* Sound */,
+                                  '2r9iqu4e' /* 効果音 */,
+                                ),
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(1.0, 0.0),
+                                child: Switch.adaptive(
+                                  value: _model.musicSwitchValue1 ??= true,
+                                  onChanged: (newValue) async {
+                                    setState(() =>
+                                        _model.musicSwitchValue1 = newValue!);
+                                    if (newValue!) {
+                                      setState(() {
+                                        FFAppState().isSoundOn = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        FFAppState().isSoundOn = false;
+                                      });
+                                    }
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'dvjbrxng' /* BGM */,
+                                ),
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(1.0, 0.0),
+                                child: Switch.adaptive(
+                                  value: _model.musicSwitchValue2 ??= true,
+                                  onChanged: (newValue) async {
+                                    setState(() =>
+                                        _model.musicSwitchValue2 = newValue!);
+                                    if (newValue!) {
+                                      setState(() {
+                                        FFAppState().isBgmOn = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        FFAppState().isBgmOn = false;
+                                      });
+                                      await actions.stopAudio();
+                                    }
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'y19j4wyr' /* BGMの音量 */,
                                 ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
@@ -240,118 +347,92 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'dvjbrxng' /* Music */,
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
-                                child: Switch.adaptive(
-                                  value: _model.musicSwitchValue ??= true,
-                                  onChanged: (newValue) async {
-                                    setState(() =>
-                                        _model.musicSwitchValue = newValue!);
-                                    if (newValue!) {
-                                      setState(() {
-                                        FFAppState().isSoundOn = true;
-                                      });
-                                    } else {
-                                      setState(() {
-                                        FFAppState().isSoundOn = false;
-                                      });
-                                      await actions.playOrPauseMusic(
-                                        FFAppState().musicFile,
-                                        true,
-                                      );
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                        if (!isWeb)
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    '9pd1oliu' /* 振動 */,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  '9pd1oliu' /* Vibration */,
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Rubik',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
-                                child: Switch.adaptive(
-                                  value: _model.vibrationSwitchValue ??=
-                                      FFAppState().isVibrationAllowed,
-                                  onChanged: (newValue) async {
-                                    setState(() => _model.vibrationSwitchValue =
-                                        newValue!);
-                                    if (newValue!) {
-                                      setState(() {
-                                        FFAppState().isVibrationAllowed = true;
-                                      });
-                                    } else {
-                                      setState(() {
-                                        FFAppState().isVibrationAllowed = false;
-                                      });
-                                    }
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  child: Switch.adaptive(
+                                    value: _model.vibrationSwitchValue ??=
+                                        FFAppState().isVibrationAllowed,
+                                    onChanged: (newValue) async {
+                                      setState(() => _model
+                                          .vibrationSwitchValue = newValue!);
+                                      if (newValue!) {
+                                        setState(() {
+                                          FFAppState().isVibrationAllowed =
+                                              true;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          FFAppState().isVibrationAllowed =
+                                              false;
+                                        });
+                                      }
+                                    },
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    activeTrackColor:
+                                        FlutterFlowTheme.of(context).accent1,
+                                    inactiveTrackColor:
+                                        FlutterFlowTheme.of(context).accent1,
+                                    inactiveThumbColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
                       ],
+                    ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed('Tutorial');
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        'xhaw44e7' /* チュートリアル */,
+                      ),
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              fontFamily: 'Figtree',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                     if (false)
                       FFButtonWidget(
@@ -359,7 +440,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           context.pushNamed('LeaderBoard');
                         },
                         text: FFLocalizations.of(context).getText(
-                          'xhaw44e7' /* LEADERBOARD */,
+                          'bxfo3361' /* LEADERBOARD */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,

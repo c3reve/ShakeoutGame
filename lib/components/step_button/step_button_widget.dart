@@ -1,11 +1,12 @@
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'step_button_model.dart';
 export 'step_button_model.dart';
@@ -120,16 +121,13 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                                     _model.dropCarouselCurrentIndex = index;
                                     if (_model.dropCarouselCurrentIndex == 0) {
                                       HapticFeedback.selectionClick();
-                                      _model.soundPlayer1 ??= AudioPlayer();
-                                      if (_model.soundPlayer1!.playing) {
-                                        await _model.soundPlayer1!.stop();
-                                      }
-                                      _model.soundPlayer1!.setVolume(1.0);
-                                      _model.soundPlayer1!
-                                          .setAsset('assets/audios/drop.mp3')
-                                          .then((_) =>
-                                              _model.soundPlayer1!.play());
-
+                                      unawaited(
+                                        () async {
+                                          await actions.playAssetSound(
+                                            'drop.mp3',
+                                          );
+                                        }(),
+                                      );
                                       await widget.onDone?.call();
                                     }
                                   },
@@ -206,16 +204,13 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                                     _model.coverCarouselCurrentIndex = index;
                                     if (_model.coverCarouselCurrentIndex == 0) {
                                       HapticFeedback.selectionClick();
-                                      _model.soundPlayer2 ??= AudioPlayer();
-                                      if (_model.soundPlayer2!.playing) {
-                                        await _model.soundPlayer2!.stop();
-                                      }
-                                      _model.soundPlayer2!.setVolume(1.0);
-                                      _model.soundPlayer2!
-                                          .setAsset('assets/audios/cover.mp3')
-                                          .then((_) =>
-                                              _model.soundPlayer2!.play());
-
+                                      unawaited(
+                                        () async {
+                                          await actions.playAssetSound(
+                                            'cover.mp3',
+                                          );
+                                        }(),
+                                      );
                                       await widget.onDone?.call();
                                     }
                                   },

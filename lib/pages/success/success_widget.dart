@@ -5,13 +5,14 @@ import '/components/quiz_result_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 import 'success_model.dart';
 export 'success_model.dart';
@@ -46,15 +47,13 @@ class _SuccessWidgetState extends State<SuccessWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.soundPlayer ??= AudioPlayer();
-      if (_model.soundPlayer!.playing) {
-        await _model.soundPlayer!.stop();
-      }
-      _model.soundPlayer!.setVolume(1.0);
-      _model.soundPlayer!
-          .setAsset('assets/audios/success.mp3')
-          .then((_) => _model.soundPlayer!.play());
-
+      unawaited(
+        () async {
+          await actions.playAssetSound(
+            'success.mp3',
+          );
+        }(),
+      );
       if (!valueOrDefault<bool>(currentUserDocument?.doneTutorial, false)) {
         await currentUserReference!.update(createUsersRecordData(
           doneTutorial: true,

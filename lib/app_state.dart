@@ -34,6 +34,9 @@ class FFAppState extends ChangeNotifier {
       _isVibrationAllowed =
           prefs.getBool('ff_isVibrationAllowed') ?? _isVibrationAllowed;
     });
+    _safeInit(() {
+      _isBgmOn = prefs.getBool('ff_isBgmOn') ?? _isBgmOn;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -129,6 +132,13 @@ class FFAppState extends ChangeNotifier {
   set isVibrationAllowed(bool _value) {
     _isVibrationAllowed = _value;
     prefs.setBool('ff_isVibrationAllowed', _value);
+  }
+
+  bool _isBgmOn = true;
+  bool get isBgmOn => _isBgmOn;
+  set isBgmOn(bool _value) {
+    _isBgmOn = _value;
+    prefs.setBool('ff_isBgmOn', _value);
   }
 }
 

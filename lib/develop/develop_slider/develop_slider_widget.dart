@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/quiz/quiz_widget.dart';
-import '/components/quiz_result_widget.dart';
+import '/components/just_slider/just_slider_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,25 +12,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'develop_quiz_model.dart';
-export 'develop_quiz_model.dart';
+import 'develop_slider_model.dart';
+export 'develop_slider_model.dart';
 
-class DevelopQuizWidget extends StatefulWidget {
-  const DevelopQuizWidget({super.key});
+class DevelopSliderWidget extends StatefulWidget {
+  const DevelopSliderWidget({super.key});
 
   @override
-  State<DevelopQuizWidget> createState() => _DevelopQuizWidgetState();
+  State<DevelopSliderWidget> createState() => _DevelopSliderWidgetState();
 }
 
-class _DevelopQuizWidgetState extends State<DevelopQuizWidget> {
-  late DevelopQuizModel _model;
+class _DevelopSliderWidgetState extends State<DevelopSliderWidget> {
+  late DevelopSliderModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DevelopQuizModel());
+    _model = createModel(context, () => DevelopSliderModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -88,7 +87,7 @@ class _DevelopQuizWidgetState extends State<DevelopQuizWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'q2lcrnoe' /* Page Title */,
+              'fl5hzmxz' /* Page Title */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Figtree',
@@ -105,38 +104,31 @@ class _DevelopQuizWidgetState extends State<DevelopQuizWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (_model.psQuiz != null)
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: 200.0,
-                      decoration: BoxDecoration(),
-                      child: wrapWithModel(
-                        model: _model.quizModel,
-                        updateCallback: () => setState(() {}),
-                        child: QuizWidget(
-                          quiz: _model.psQuiz!,
-                          onCorrect: () async {},
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 200.0,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                      ),
-                      child: wrapWithModel(
-                        model: _model.quizResultModel,
-                        updateCallback: () => setState(() {}),
-                        child: QuizResultWidget(
-                          quize: _model.psQuiz!,
-                        ),
-                      ),
-                    ),
-                  ].divide(SizedBox(height: 20.0)),
+              wrapWithModel(
+                model: _model.justSliderModel1,
+                updateCallback: () => setState(() {}),
+                child: JustSliderWidget(
+                  correct: 0.0,
+                  onChange: (isCorrect) async {},
                 ),
-            ],
+              ),
+              wrapWithModel(
+                model: _model.justSliderModel2,
+                updateCallback: () => setState(() {}),
+                child: JustSliderWidget(
+                  correct: 50.0,
+                  onChange: (isCorrect) async {},
+                ),
+              ),
+              wrapWithModel(
+                model: _model.justSliderModel3,
+                updateCallback: () => setState(() {}),
+                child: JustSliderWidget(
+                  correct: 100.0,
+                  onChange: (isCorrect) async {},
+                ),
+              ),
+            ].divide(SizedBox(height: 20.0)),
           ),
         ),
       ),

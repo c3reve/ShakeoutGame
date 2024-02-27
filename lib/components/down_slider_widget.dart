@@ -135,13 +135,18 @@ class _DownSliderWidgetState extends State<DownSliderWidget> {
           onPressed: _model.isDisable
               ? null
               : () async {
-                  if (_model.csSliderValue! >= 0.9) {
+                  if ((_model.csSliderValue! >= 0.8) &&
+                      (_model.csSliderValue! <= 1.00)) {
                     _model.instantTimer?.cancel();
                     await widget.onInitialized?.call(
                       true,
                     );
                     setState(() {
                       _model.isDisable = true;
+                    });
+                  } else {
+                    setState(() {
+                      _model.csSliderValue = -1.0;
                     });
                   }
                 },
@@ -168,7 +173,7 @@ class _DownSliderWidgetState extends State<DownSliderWidget> {
         ),
         Text(
           FFLocalizations.of(context).getText(
-            '2un4himm' /* 丸が一番下にきた時にタップ！ */,
+            '2un4himm' /* 円の中に入った時にタップ！ */,
           ),
           style: FlutterFlowTheme.of(context).bodyMedium,
         ),

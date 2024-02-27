@@ -21,10 +21,12 @@ class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for musicSwitch widget.
+  bool? musicSwitchValue1;
+  // State field(s) for musicSwitch widget.
+  bool? musicSwitchValue2;
   // State field(s) for soundSlider widget.
   double? soundSliderValue;
-  // State field(s) for musicSwitch widget.
-  bool? musicSwitchValue;
   // State field(s) for vibrationSwitch widget.
   bool? vibrationSwitchValue;
 
