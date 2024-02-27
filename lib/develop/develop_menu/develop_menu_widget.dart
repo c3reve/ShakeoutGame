@@ -79,8 +79,9 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.vertical,
             children: [
               InkWell(
                 splashColor: Colors.transparent,
@@ -96,12 +97,6 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                       'r7xmixea' /* クイズ */,
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge,
-                  ),
-                  subtitle: Text(
-                    FFLocalizations.of(context).getText(
-                      '68nhh8k6' /* Subtitle goes here... */,
-                    ),
-                    style: FlutterFlowTheme.of(context).labelMedium,
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -127,12 +122,6 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge,
                   ),
-                  subtitle: Text(
-                    FFLocalizations.of(context).getText(
-                      'x4laxk78' /* Subtitle goes here... */,
-                    ),
-                    style: FlutterFlowTheme.of(context).labelMedium,
-                  ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -142,7 +131,7 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                   dense: false,
                 ),
               ),
-            ],
+            ].divide(SizedBox(height: 2.0)),
           ),
         ),
       ),

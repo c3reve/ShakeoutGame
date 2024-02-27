@@ -90,7 +90,7 @@ class _JustSliderWidgetState extends State<JustSliderWidget> {
                       width: 300.0,
                       child: Slider(
                         activeColor: FlutterFlowTheme.of(context).primary,
-                        inactiveColor: FlutterFlowTheme.of(context).alternate,
+                        inactiveColor: FlutterFlowTheme.of(context).primary,
                         min: 0.0,
                         max: 100.0,
                         value: _model.sliderValue ??=

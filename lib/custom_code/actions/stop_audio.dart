@@ -14,24 +14,10 @@ import 'package:flutter/material.dart';
 import '/custom_code/actions/init_audio_player.dart';
 import 'package:just_audio/just_audio.dart';
 
-Future playOrPauseAudio(
-  String audioPath,
-  bool isPause,
-) async {
+Future stopAudio() async {
   var _audioPlayer = AudioPlayerSingleton().audioPlayer!;
 
   if (_audioPlayer.playing) {
     await _audioPlayer.stop();
-  }
-
-  if (!_audioPlayer.playing && isPause == false) {
-    await _audioPlayer.setAudioSource(
-      AudioSource.asset(audioPath),
-      // AudioSource.uri(Uri.parse('asset:///${audioPath}')),
-      initialIndex: 0,
-      initialPosition: Duration.zero,
-    );
-    await _audioPlayer.play();
-    _audioPlayer.setLoopMode(LoopMode.all);
   }
 }

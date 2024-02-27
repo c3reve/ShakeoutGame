@@ -89,9 +89,9 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
-                      await actions.playOrPauseAudio(
-                        'assets/audios/earthquake.mp3',
-                        false,
+                      await actions.playAssetAudio(
+                        'cover.mp3',
+                        true,
                       );
                     },
                     text: FFLocalizations.of(context).getText(

@@ -295,7 +295,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     '68nhh8k6': {
-      'ja': 'Subtitle goes here...',
+      'ja': '',
       'en': '',
     },
     'oghe6zf7': {
@@ -303,7 +303,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'x4laxk78': {
-      'ja': 'Subtitle goes here...',
+      'ja': '',
       'en': '',
     },
     'hgdzfzbl': {
