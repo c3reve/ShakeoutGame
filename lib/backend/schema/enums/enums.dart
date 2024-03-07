@@ -18,6 +18,11 @@ enum GameStep {
   HoldOn,
 }
 
+enum PlayError {
+  OutOfTerm,
+  Played,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -35,6 +40,8 @@ T? deserializeEnum<T>(String? value) {
       return GameMode.values.deserialize(value) as T?;
     case (GameStep):
       return GameStep.values.deserialize(value) as T?;
+    case (PlayError):
+      return PlayError.values.deserialize(value) as T?;
     default:
       return null;
   }

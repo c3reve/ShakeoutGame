@@ -1,12 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/l_b_rank_points_current_user_widget.dart';
-import '/components/l_b_rank_points_other_user_widget.dart';
 import '/components/profile_circle_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,6 +36,13 @@ class _LeaderBoardWidgetState extends State<LeaderBoardWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.populatedPlayers = await actions.populatePlayers();
+      _model.acPlayerScores = await queryScoresRecordOnce();
+      setState(() {
+        FFAppState().updateCurrentPlayersAtIndex(
+          0,
+          (e) => e,
+        );
+      });
       setState(() {
         FFAppState().currentPlayers =
             _model.populatedPlayers!.toList().cast<PlayerStruct>();
@@ -112,54 +121,6 @@ class _LeaderBoardWidgetState extends State<LeaderBoardWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 36.0),
-                  child: Container(
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                      child: Builder(
-                        builder: (context) {
-                          final players = FFAppState().currentPlayers.toList();
-                          return ListView.separated(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: players.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 4.0),
-                            itemBuilder: (context, playersIndex) {
-                              final playersItem = players[playersIndex];
-                              return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 6.0, 24.0, 0.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    if (playersItem.isCurrentUser) {
-                                      return LBRankPointsCurrentUserWidget(
-                                        key: Key(
-                                            'Keyw1m_${playersIndex}_of_${players.length}'),
-                                        player: playersItem,
-                                      );
-                                    } else {
-                                      return LBRankPointsOtherUserWidget(
-                                        key: Key(
-                                            'Keylwp_${playersIndex}_of_${players.length}'),
-                                        player: playersItem,
-                                      );
-                                    }
-                                  },
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ],

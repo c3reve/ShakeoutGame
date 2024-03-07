@@ -109,11 +109,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '90lh48ob': {
       'ja': 'シェイクアウト\nゲーム',
-      'en': 'shake out\ngame',
+      'en': 'ShakeOut\nGame',
     },
     '45xdkaj0': {
       'ja': 'はじめる',
-      'en': 'Start',
+      'en': 'Play',
     },
     'naw8gn6b': {
       'ja': 'ランキング',
@@ -121,7 +121,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hf1hdpl1': {
       'ja': '設定',
-      'en': 'setting',
+      'en': 'Setting',
     },
     '7whih7pd': {
       'ja': '開発用',
@@ -159,7 +159,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'tutorial',
     },
     'bxfo3361': {
-      'ja': 'LEADERBOARD',
+      'ja': 'ランキング',
       'en': 'LEADER BOARD',
     },
     'xr2qhw6n': {
@@ -217,6 +217,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': 'HOLD ONを長押し！',
       'en': 'Long press HOLD ON!',
     },
+    '4hl9up9h': {
+      'ja': '期間外です',
+      'en': 'It\'s outside the period',
+    },
+    'vow996dn': {
+      'ja': 'プレイ済みです',
+      'en': 'Already played',
+    },
     'giodltuy': {
       'ja': 'Home',
       'en': 'Home',
@@ -242,7 +250,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja':
           '地震発生時、まずは「しゃがんで」安全な場所に移動し、「頭を守る」ために机やテーブルの下などに隠れ、「しっかりと持ちこたえる」ために何かしっかりとしたものにつかまります。',
       'en':
-          'When an earthquake occurs, the first thing you should do is ``squat down\'\' and move to a safe place, hide under a desk or table to ``protect your head,\'\' and hold on to something solid to ``hold on.\'\'',
+          'When an earthquake occurs, the first thing you should do is ``squat\'\' and move to a safe place, hide under a desk or table to ``protect your head,\'\' and hold on to something solid to ``hold on.\'\'',
     },
     'hl81aeg7': {
       'ja': 'チュートリアルを開始',
@@ -260,7 +268,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Success
   {
     'x8f65l8n': {
-      'ja': 'おめでとう！\n避難に成功しました！',
+      'ja': 'おめでとうございます！\n避難に成功しました！',
       'en': 'Congratulations!\nSuccessful evacuation!',
     },
     'qzn7ies7': {
@@ -270,6 +278,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2zhjrtlu': {
       'ja': '秒',
       'en': 'seconds',
+    },
+    '6r6i8a2n': {
+      'ja': 'Drop',
+      'en': '',
+    },
+    'gu17p67g': {
+      'ja': '秒',
+      'en': '',
+    },
+    'ybyk62hx': {
+      'ja': 'Cover',
+      'en': '',
+    },
+    'fbmbvrfr': {
+      'ja': '秒',
+      'en': '',
+    },
+    'n36vhlvl': {
+      'ja': 'Hold On',
+      'en': '',
+    },
+    '153rsc7v': {
+      'ja': '秒',
+      'en': '',
     },
     'w1wytlbo': {
       'ja':
@@ -290,7 +322,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '297sumt4': {
       'ja': 'シェイクアウト\nゲーム',
-      'en': 'shake out\ngame',
+      'en': 'ShakeOut\nGame',
     },
     '87dm7fwb': {
       'ja': 'Tap to start',
@@ -350,6 +382,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': '',
       'en': '',
     },
+    'so8t28ft': {
+      'ja': 'スケジュール',
+      'en': '',
+    },
+    'sq8oxqfm': {
+      'ja': '',
+      'en': '',
+    },
     'hgdzfzbl': {
       'ja': 'Develop',
       'en': 'Develop',
@@ -401,7 +441,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Ranking
   {
     'dogp95en': {
-      'ja': 'Page Title',
+      'ja': 'ランキング',
       'en': '',
     },
     '4yn84b5t': {
@@ -416,6 +456,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'q6n7sr1a': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // develop_schedule
+  {
+    'cdo2qtz6': {
+      'ja': 'Page Title',
+      'en': '',
+    },
+    '6ndl5v4c': {
       'ja': 'Home',
       'en': '',
     },
@@ -445,26 +496,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': 'Rank',
       'en': 'Rank',
     },
-    'gymf9iun': {
-      'ja': '456',
-      'en': '456',
+    'jryfodht': {
+      'ja': 'you',
+      'en': '',
     },
     'yye4p0w8': {
-      'ja': 'Points',
-      'en': 'Points',
-    },
-  },
-  // LBRankPointsOtherUser
-  {
-    'fcb4bw72': {
-      'ja': 'Rank',
-      'en': 'Rank',
-    },
-    'h2l39c0i': {
-      'ja': '456',
-      'en': '456',
-    },
-    's8dpbpdz': {
       'ja': 'Points',
       'en': 'Points',
     },
@@ -511,6 +547,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ep46nq7e': {
       'ja': 'A. ',
       'en': 'A.',
+    },
+  },
+  // emptyText
+  {
+    'wsc4ut3d': {
+      'ja': 'まだランキングが記録されていません',
+      'en': '',
     },
   },
   // Miscellaneous

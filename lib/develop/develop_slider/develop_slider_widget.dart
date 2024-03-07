@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/decimal_time_widget.dart';
 import '/components/just_slider/just_slider_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -126,6 +127,25 @@ class _DevelopSliderWidgetState extends State<DevelopSliderWidget> {
                 child: JustSliderWidget(
                   correct: 100.0,
                   onChange: (isCorrect) async {},
+                ),
+              ),
+              Expanded(
+                child: wrapWithModel(
+                  model: _model.decimalTimeModel1,
+                  updateCallback: () => setState(() {}),
+                  child: DecimalTimeWidget(
+                    time: 1.2345,
+                    fontSize: 32.0,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: wrapWithModel(
+                  model: _model.decimalTimeModel2,
+                  updateCallback: () => setState(() {}),
+                  child: DecimalTimeWidget(
+                    time: 1234.5,
+                  ),
                 ),
               ),
             ].divide(SizedBox(height: 20.0)),

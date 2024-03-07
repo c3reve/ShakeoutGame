@@ -44,3 +44,7 @@ double? normalizationAlignment(double inputValue) {
   double result = 2 * (inputValue - 50) / 100;
   return result;
 }
+
+int? returnAdd(int input) {
+  return input + 1;
+}

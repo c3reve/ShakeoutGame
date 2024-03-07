@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +9,18 @@ export 'l_b_rank_points_current_user_model.dart';
 class LBRankPointsCurrentUserWidget extends StatefulWidget {
   const LBRankPointsCurrentUserWidget({
     super.key,
-    required this.player,
-  });
+    String? name,
+    this.score,
+    this.rank,
+    required this.prImagePath,
+    required this.isCurrentUser,
+  }) : this.name = name ?? '';
 
-  final PlayerStruct? player;
+  final String name;
+  final int? score;
+  final int? rank;
+  final String? prImagePath;
+  final bool? isCurrentUser;
 
   @override
   State<LBRankPointsCurrentUserWidget> createState() =>
@@ -49,146 +56,254 @@ class _LBRankPointsCurrentUserWidgetState
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: double.infinity,
-      height: 60.0,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 1.0,
-            color: Color(0xFF4837DD),
-            offset: Offset(0.0, 1.0),
-          )
-        ],
-        gradient: LinearGradient(
-          colors: [FlutterFlowTheme.of(context).tertiary, Color(0xFF5849E1)],
-          stops: [0.0, 1.0],
-          begin: AlignmentDirectional(0.0, -1.0),
-          end: AlignmentDirectional(0, 1.0),
+    return Stack(
+      children: [
+        Builder(
+          builder: (context) {
+            if (widget.isCurrentUser ?? false) {
+              return Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 1.0,
+                      color: Color(0xFF4837DD),
+                      offset: Offset(0.0, 1.0),
+                    )
+                  ],
+                  gradient: LinearGradient(
+                    colors: [
+                      FlutterFlowTheme.of(context).tertiary,
+                      Color(0xFF5849E1)
+                    ],
+                    stops: [0.0, 1.0],
+                    begin: AlignmentDirectional(0.0, -1.0),
+                    end: AlignmentDirectional(0, 1.0),
+                  ),
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+              );
+            } else {
+              return Container(
+                width: double.infinity,
+                height: 60.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 1.0,
+                      color: Color(0xFF4837DD),
+                      offset: Offset(0.0, 1.0),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(40.0),
+                  border: Border.all(
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              );
+            }
+          },
         ),
-        borderRadius: BorderRadius.circular(40.0),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(24.0),
-                  child: Image.network(
-                    widget.player!.profileImage,
-                    width: 40.0,
-                    height: 40.0,
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.player?.profileName,
-                      'John Doe',
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              '6wdko7jv' /* Rank */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Figtree',
+                                  color: widget.isCurrentUser!
+                                      ? FlutterFlowTheme.of(context)
+                                          .primaryBackground
+                                      : FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Text(
+                            valueOrDefault<String>(
+                              widget.rank?.toString(),
+                              '0',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Figtree',
+                                  color: widget.isCurrentUser!
+                                      ? FlutterFlowTheme.of(context)
+                                          .primaryBackground
+                                      : FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Figtree',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
+                    Builder(
+                      builder: (context) {
+                        if (widget.prImagePath != null &&
+                            widget.prImagePath != '') {
+                          return Container(
+                            width: 48.0,
+                            height: 48.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              valueOrDefault<String>(
+                                widget.prImagePath,
+                                'https://mighty.tools/mockmind-api/content/human/1.jpg',
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            width: 48.0,
+                            height: 48.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              'https://mighty.tools/mockmind-api/content/human/1.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (widget.isCurrentUser ?? true)
+                            Text(
+                              FFLocalizations.of(context).getText(
+                                'jryfodht' /* you */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Figtree',
+                                    color: widget.isCurrentUser!
+                                        ? FlutterFlowTheme.of(context)
+                                            .primaryBackground
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          Text(
+                            valueOrDefault<String>(
+                              widget.name,
+                              '未設定',
+                            ),
+                            maxLines: 1,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Figtree',
+                                  color: widget.isCurrentUser!
+                                      ? FlutterFlowTheme.of(context)
+                                          .primaryBackground
+                                      : FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
-              ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                  child: Column(
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                    height: 100.0,
+                    child: VerticalDivider(
+                      thickness: 1.0,
+                      indent: 8.0,
+                      endIndent: 8.0,
+                      color: Color(0x4F9489F5),
+                    ),
+                  ),
+                  Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         FFLocalizations.of(context).getText(
-                          '6wdko7jv' /* Rank */,
+                          'yye4p0w8' /* Points */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Figtree',
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: widget.isCurrentUser!
+                                  ? FlutterFlowTheme.of(context)
+                                      .primaryBackground
+                                  : FlutterFlowTheme.of(context).primaryText,
                               fontSize: 10.0,
                               fontWeight: FontWeight.w500,
                             ),
                       ),
                       Text(
-                        FFLocalizations.of(context).getText(
-                          'gymf9iun' /* 456 */,
+                        valueOrDefault<String>(
+                          widget.score?.toString(),
+                          '0',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Figtree',
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: widget.isCurrentUser!
+                                  ? FlutterFlowTheme.of(context)
+                                      .primaryBackground
+                                  : FlutterFlowTheme.of(context).primaryText,
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 100.0,
-                  child: VerticalDivider(
-                    thickness: 1.0,
-                    indent: 8.0,
-                    endIndent: 8.0,
-                    color: Color(0x4F9489F5),
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      FFLocalizations.of(context).getText(
-                        'yye4p0w8' /* Points */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Figtree',
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            fontSize: 10.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Text(
-                      valueOrDefault<String>(
-                        widget.player?.highScore?.toString(),
-                        '100',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Figtree',
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      ],
     );
   }
 }

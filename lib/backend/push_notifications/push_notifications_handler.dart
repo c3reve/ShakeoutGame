@@ -124,9 +124,10 @@ final parametersBuilderMap =
   'Success': (data) async => ParameterData(
         allParams: {
           'time': getParameter<int>(data, 'time'),
-          'scoreRef': getParameter<DocumentReference>(data, 'scoreRef'),
           'quizeDoc': await getDocumentParameter<QuizzesRecord>(
               data, 'quizeDoc', QuizzesRecord.fromSnapshot),
+          'scoreDoc': await getDocumentParameter<ScoresRecord>(
+              data, 'scoreDoc', ScoresRecord.fromSnapshot),
         },
       ),
   'TopPage': ParameterData.none(),
@@ -135,6 +136,7 @@ final parametersBuilderMap =
   'develop_sound': ParameterData.none(),
   'Ranking': ParameterData.none(),
   'develop_slider': ParameterData.none(),
+  'develop_schedule': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

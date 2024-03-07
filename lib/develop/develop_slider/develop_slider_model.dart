@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/decimal_time_widget.dart';
 import '/components/just_slider/just_slider_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,6 +33,10 @@ class DevelopSliderModel extends FlutterFlowModel<DevelopSliderWidget> {
   late JustSliderModel justSliderModel2;
   // Model for JustSlider component.
   late JustSliderModel justSliderModel3;
+  // Model for DecimalTime component.
+  late DecimalTimeModel decimalTimeModel1;
+  // Model for DecimalTime component.
+  late DecimalTimeModel decimalTimeModel2;
 
   /// Initialization and disposal methods.
 
@@ -40,6 +45,8 @@ class DevelopSliderModel extends FlutterFlowModel<DevelopSliderWidget> {
     justSliderModel1 = createModel(context, () => JustSliderModel());
     justSliderModel2 = createModel(context, () => JustSliderModel());
     justSliderModel3 = createModel(context, () => JustSliderModel());
+    decimalTimeModel1 = createModel(context, () => DecimalTimeModel());
+    decimalTimeModel2 = createModel(context, () => DecimalTimeModel());
   }
 
   @override
@@ -48,6 +55,8 @@ class DevelopSliderModel extends FlutterFlowModel<DevelopSliderWidget> {
     justSliderModel1.dispose();
     justSliderModel2.dispose();
     justSliderModel3.dispose();
+    decimalTimeModel1.dispose();
+    decimalTimeModel2.dispose();
   }
 
   /// Action blocks are added here.

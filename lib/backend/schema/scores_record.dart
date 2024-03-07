@@ -37,11 +37,17 @@ class ScoresRecord extends FirestoreRecord {
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
 
+  // "score" field.
+  ScoreSetStruct? _score;
+  ScoreSetStruct get score => _score ?? ScoreSetStruct();
+  bool hasScore() => _score != null;
+
   void _initializeFields() {
     _userRef = snapshotData['userRef'] as DocumentReference?;
     _scheduleRef = snapshotData['scheduleRef'] as DocumentReference?;
     _time = castToType<int>(snapshotData['time']);
     _createdTime = snapshotData['created_time'] as DateTime?;
+    _score = ScoreSetStruct.maybeFromMap(snapshotData['score']);
   }
 
   static CollectionReference get collection =>
@@ -82,6 +88,7 @@ Map<String, dynamic> createScoresRecordData({
   DocumentReference? scheduleRef,
   int? time,
   DateTime? createdTime,
+  ScoreSetStruct? score,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -89,8 +96,12 @@ Map<String, dynamic> createScoresRecordData({
       'scheduleRef': scheduleRef,
       'time': time,
       'created_time': createdTime,
+      'score': ScoreSetStruct().toMap(),
     }.withoutNulls,
   );
+
+  // Handle nested data for "score" field.
+  addScoreSetStructData(firestoreData, score, 'score');
 
   return firestoreData;
 }
@@ -103,12 +114,13 @@ class ScoresRecordDocumentEquality implements Equality<ScoresRecord> {
     return e1?.userRef == e2?.userRef &&
         e1?.scheduleRef == e2?.scheduleRef &&
         e1?.time == e2?.time &&
-        e1?.createdTime == e2?.createdTime;
+        e1?.createdTime == e2?.createdTime &&
+        e1?.score == e2?.score;
   }
 
   @override
   int hash(ScoresRecord? e) => const ListEquality()
-      .hash([e?.userRef, e?.scheduleRef, e?.time, e?.createdTime]);
+      .hash([e?.userRef, e?.scheduleRef, e?.time, e?.createdTime, e?.score]);
 
   @override
   bool isValidKey(Object? o) => o is ScoresRecord;

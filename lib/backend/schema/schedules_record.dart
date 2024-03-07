@@ -17,11 +17,6 @@ class SchedulesRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "date" field.
-  DateTime? _date;
-  DateTime? get date => _date;
-  bool hasDate() => _date != null;
-
   // "sentCount" field.
   int? _sentCount;
   int get sentCount => _sentCount ?? 0;
@@ -37,11 +32,34 @@ class SchedulesRecord extends FirestoreRecord {
   DocumentReference? get quizRef => _quizRef;
   bool hasQuizRef() => _quizRef != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "start_time" field.
+  DateTime? _startTime;
+  DateTime? get startTime => _startTime;
+  bool hasStartTime() => _startTime != null;
+
+  // "end_time" field.
+  DateTime? _endTime;
+  DateTime? get endTime => _endTime;
+  bool hasEndTime() => _endTime != null;
+
+  // "done_time" field.
+  DateTime? _doneTime;
+  DateTime? get doneTime => _doneTime;
+  bool hasDoneTime() => _doneTime != null;
+
   void _initializeFields() {
-    _date = snapshotData['date'] as DateTime?;
     _sentCount = castToType<int>(snapshotData['sentCount']);
     _sliderValue = castToType<double>(snapshotData['sliderValue']);
     _quizRef = snapshotData['quizRef'] as DocumentReference?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _startTime = snapshotData['start_time'] as DateTime?;
+    _endTime = snapshotData['end_time'] as DateTime?;
+    _doneTime = snapshotData['done_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -79,17 +97,23 @@ class SchedulesRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createSchedulesRecordData({
-  DateTime? date,
   int? sentCount,
   double? sliderValue,
   DocumentReference? quizRef,
+  DateTime? createdTime,
+  DateTime? startTime,
+  DateTime? endTime,
+  DateTime? doneTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'date': date,
       'sentCount': sentCount,
       'sliderValue': sliderValue,
       'quizRef': quizRef,
+      'created_time': createdTime,
+      'start_time': startTime,
+      'end_time': endTime,
+      'done_time': doneTime,
     }.withoutNulls,
   );
 
@@ -101,15 +125,25 @@ class SchedulesRecordDocumentEquality implements Equality<SchedulesRecord> {
 
   @override
   bool equals(SchedulesRecord? e1, SchedulesRecord? e2) {
-    return e1?.date == e2?.date &&
-        e1?.sentCount == e2?.sentCount &&
+    return e1?.sentCount == e2?.sentCount &&
         e1?.sliderValue == e2?.sliderValue &&
-        e1?.quizRef == e2?.quizRef;
+        e1?.quizRef == e2?.quizRef &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.startTime == e2?.startTime &&
+        e1?.endTime == e2?.endTime &&
+        e1?.doneTime == e2?.doneTime;
   }
 
   @override
-  int hash(SchedulesRecord? e) => const ListEquality()
-      .hash([e?.date, e?.sentCount, e?.sliderValue, e?.quizRef]);
+  int hash(SchedulesRecord? e) => const ListEquality().hash([
+        e?.sentCount,
+        e?.sliderValue,
+        e?.quizRef,
+        e?.createdTime,
+        e?.startTime,
+        e?.endTime,
+        e?.doneTime
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is SchedulesRecord;

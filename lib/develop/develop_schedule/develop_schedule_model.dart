@@ -1,14 +1,20 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'develop_menu_widget.dart' show DevelopMenuWidget;
+import 'develop_schedule_widget.dart' show DevelopScheduleWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DevelopMenuModel extends FlutterFlowModel<DevelopMenuWidget> {
+class DevelopScheduleModel extends FlutterFlowModel<DevelopScheduleWidget> {
+  ///  Local state fields for this page.
+
+  QuizzesRecord? psQuiz;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

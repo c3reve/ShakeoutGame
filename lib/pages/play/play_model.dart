@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/down_slider_widget.dart';
 import '/components/just_slider/just_slider_widget.dart';
 import '/components/quiz/quiz_widget.dart';
@@ -13,6 +14,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'play_widget.dart' show PlayWidget;
@@ -40,11 +42,17 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   void updatePsDoneStepsAtIndex(int index, Function(GameStep) updateFn) =>
       psDoneSteps[index] = updateFn(psDoneSteps[index]);
 
-  int? psSliderValue = 0;
-
-  bool psIsUp = true;
-
   QuizzesRecord? psQuiz;
+
+  bool psIsPageLoaded = false;
+
+  PlayError? psPlayError;
+
+  ScoreSetStruct? psScore;
+  void updatePsScoreStruct(Function(ScoreSetStruct) updateFn) =>
+      updateFn(psScore ??= ScoreSetStruct());
+
+  int psLapTime = 0;
 
   ///  State fields for stateful widgets in this page.
 
@@ -54,18 +62,20 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   // Stores action output result for [Backend Call - Read Document] action in Play widget.
   QuizzesRecord? scheduleQuiz;
   // Stores action output result for [Firestore Query - Query a collection] action in Play widget.
+  ScoresRecord? aoScore;
+  // Stores action output result for [Firestore Query - Query a collection] action in Play widget.
   int? quizCount;
   // Stores action output result for [Firestore Query - Query a collection] action in Play widget.
   QuizzesRecord? randomQuiz;
   InstantTimer? vibrationTimer;
-  // State field(s) for Timer widget.
-  int timerMilliseconds = 0;
-  String timerValue = StopWatchTimer.getDisplayTime(
+  // State field(s) for ScoreTimer widget.
+  int scoreTimerMilliseconds = 0;
+  String scoreTimerValue = StopWatchTimer.getDisplayTime(
     0,
     hours: false,
     minute: false,
   );
-  FlutterFlowTimerController timerController =
+  FlutterFlowTimerController scoreTimerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countUp));
 
   // Model for DownSlider component.
@@ -80,6 +90,8 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   late StepButtonModel stepButtonModel2;
   // Model for StepButton component.
   late StepButtonModel stepButtonModel3;
+  // Stores action output result for [Backend Call - Create Document] action in StepButton widget.
+  ScoresRecord? aoCreatedScore;
 
   /// Initialization and disposal methods.
 
@@ -97,7 +109,7 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   void dispose() {
     unfocusNode.dispose();
     vibrationTimer?.cancel();
-    timerController.dispose();
+    scoreTimerController.dispose();
     downSliderModel.dispose();
     justSliderModel.dispose();
     quizModel.dispose();
@@ -117,10 +129,40 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
     if (step == GameStep.Drop) {
       // 現在のstepをDropに更新
       psNowStep = GameStep.Cover;
+      psLapTime = scoreTimerMilliseconds;
+      psScore = ScoreSetStruct(
+        dropTime: scoreTimerMilliseconds / 1000,
+      );
     } else if (step == GameStep.Cover) {
       // 現在のstepをHoldOnに更新
       psNowStep = GameStep.HoldOn;
+      updatePsScoreStruct(
+        (e) => e..coverTime = (scoreTimerMilliseconds - psLapTime) / 1000,
+      );
+      psLapTime = scoreTimerMilliseconds;
+    } else {
+      updatePsScoreStruct(
+        (e) => e
+          ..holdOnTime = (scoreTimerMilliseconds - psLapTime) / 1000
+          ..totalTime = (60000 - scoreTimerMilliseconds) / 1000,
+      );
     }
+  }
+
+  Future invalidPlay(BuildContext context) async {
+    psIsPageLoaded = true;
+    await Future.delayed(const Duration(milliseconds: 3000));
+
+    context.pushNamed(
+      'MainMenu',
+      extra: <String, dynamic>{
+        kTransitionInfoKey: TransitionInfo(
+          hasTransition: true,
+          transitionType: PageTransitionType.fade,
+          duration: Duration(milliseconds: 0),
+        ),
+      },
+    );
   }
 
   /// Additional helper methods are added here.

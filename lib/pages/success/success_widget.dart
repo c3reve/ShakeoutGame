@@ -1,14 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/components/decimal_time_widget.dart';
 import '/components/quiz_result_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,15 +22,17 @@ class SuccessWidget extends StatefulWidget {
   const SuccessWidget({
     super.key,
     this.time,
-    this.scoreRef,
     this.mode,
     this.quizeDoc,
+    this.scoreDoc,
+    this.score,
   });
 
   final int? time;
-  final DocumentReference? scoreRef;
   final GameMode? mode;
   final QuizzesRecord? quizeDoc;
+  final ScoresRecord? scoreDoc;
+  final dynamic score;
 
   @override
   State<SuccessWidget> createState() => _SuccessWidgetState();
@@ -91,39 +94,43 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                 maxWidth: FFAppConstants.ContentMaxWidth,
               ),
               decoration: BoxDecoration(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: Stack(
                 children: [
-                  Expanded(
+                  Opacity(
+                    opacity: 0.5,
                     child: Container(
                       width: double.infinity,
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 80.0,
-                            child: custom_widgets.ConfettiBgWidget(
-                              width: double.infinity,
-                              height: 80.0,
-                              loop: false,
-                              particleCount: 40,
-                              gravity: 20.0,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
+                      height: 80.0,
+                      child: custom_widgets.ConfettiBgWidget(
+                        width: double.infinity,
+                        height: 80.0,
+                        loop: false,
+                        particleCount: 40,
+                        gravity: 20.0,
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        'x8f65l8n' /* おめでとう！
+                                        'x8f65l8n' /* おめでとうございます！
 避難に成功しました！ */
                                         ,
                                       ),
@@ -134,55 +141,276 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                                             fontSize: 16.0,
                                           ),
                                     ),
-                                    Row(
+                                    Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 6.0, 6.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'qzn7ies7' /* 記録 */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  fontSize: 16.0,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 6.0, 6.0),
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'qzn7ies7' /* 記録 */,
                                                 ),
-                                          ),
-                                        ),
-                                        Text(
-                                          functions.msToString(widget.time!),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Figtree',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Figtree',
+                                                          fontSize: 16.0,
+                                                        ),
+                                              ),
+                                            ),
+                                            wrapWithModel(
+                                              model: _model.decimalTimeModel1,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: DecimalTimeWidget(
+                                                time:
+                                                    ScoreSetStruct.maybeFromMap(
+                                                            widget.score!)!
+                                                        .totalTime,
                                                 fontSize: 32.0,
                                               ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 6.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              '2zhjrtlu' /* 秒 */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Figtree',
-                                                  fontSize: 16.0,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 6.0),
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '2zhjrtlu' /* 秒 */,
                                                 ),
-                                          ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Figtree',
+                                                          fontSize: 16.0,
+                                                        ),
+                                              ),
+                                            ),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
-                                      ].divide(SizedBox(width: 4.0)),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  6.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '6r6i8a2n' /* Drop */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .decimalTimeModel2,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      child: DecimalTimeWidget(
+                                                        time: ScoreSetStruct
+                                                                .maybeFromMap(
+                                                                    widget
+                                                                        .score!)!
+                                                            .dropTime,
+                                                        fontSize: 14.0,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'gu17p67g' /* 秒 */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                fontSize: 14.0,
+                                                              ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(width: 4.0)),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  6.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'ybyk62hx' /* Cover */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .decimalTimeModel3,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      child: DecimalTimeWidget(
+                                                        time: ScoreSetStruct
+                                                                .maybeFromMap(
+                                                                    widget
+                                                                        .score!)!
+                                                            .coverTime,
+                                                        fontSize: 14.0,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'fbmbvrfr' /* 秒 */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                fontSize: 14.0,
+                                                              ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(width: 4.0)),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  6.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'n36vhlvl' /* Hold On */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .decimalTimeModel4,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      child: DecimalTimeWidget(
+                                                        time: ScoreSetStruct
+                                                                .maybeFromMap(
+                                                                    widget
+                                                                        .score!)!
+                                                            .holdOnTime,
+                                                        fontSize: 14.0,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '153rsc7v' /* 秒 */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                fontSize: 14.0,
+                                                              ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(width: 4.0)),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ].divide(SizedBox(height: 4.0)),
                                     ),
                                     if (widget.quizeDoc != null)
                                       Column(
@@ -216,45 +444,50 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                                       ),
                                   ].divide(SizedBox(height: 30.0)),
                                 ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 1.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      context.pushNamed('MainMenu');
-                                    },
-                                    text: FFLocalizations.of(context).getText(
-                                      '8kbstuzd' /* タイトルへ */,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 1.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('MainMenu');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '8kbstuzd' /* タイトルへ */,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Figtree',
+                                      color: Colors.white,
                                     ),
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: Colors.white,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
-                              ].divide(SizedBox(height: 50.0)),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
+                    ]
+                        .addToStart(SizedBox(height: 30.0))
+                        .addToEnd(SizedBox(height: 30.0)),
                   ),
                 ],
               ),

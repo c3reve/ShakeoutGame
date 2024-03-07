@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -73,7 +74,27 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: [],
+          actions: [
+            FlutterFlowIconButton(
+              borderColor: FlutterFlowTheme.of(context).primary,
+              borderRadius: 20.0,
+              borderWidth: 1.0,
+              buttonSize: 40.0,
+              fillColor: FlutterFlowTheme.of(context).accent1,
+              icon: Icon(
+                Icons.logout,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+              onPressed: () async {
+                GoRouter.of(context).prepareAuthEvent();
+                await authManager.signOut();
+                GoRouter.of(context).clearRedirectLocation();
+
+                context.goNamedAuth('TopPage', context.mounted);
+              },
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -167,6 +188,30 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                   title: Text(
                     FFLocalizations.of(context).getText(
                       '6fanoipr' /* ランキング */,
+                    ),
+                    style: FlutterFlowTheme.of(context).titleLarge,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 20.0,
+                  ),
+                  tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  dense: false,
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed('develop_schedule');
+                },
+                child: ListTile(
+                  title: Text(
+                    FFLocalizations.of(context).getText(
+                      'so8t28ft' /* スケジュール */,
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge,
                   ),

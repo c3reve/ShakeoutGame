@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,8 @@ import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
+export '/backend/firebase_dynamic_links/firebase_dynamic_links.dart'
+    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -82,8 +85,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? MainMenuWidget() : TopPageWidget(),
+      errorBuilder: (context, state) => _RouteErrorBuilder(
+        state: state,
+        child: appStateNotifier.loggedIn ? MainMenuWidget() : TopPageWidget(),
+      ),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -106,6 +111,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LeaderBoard',
           path: '/leaderBoard',
+          requireAuth: true,
           builder: (context, params) => LeaderBoardWidget(),
         ),
         FFRoute(
@@ -130,13 +136,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           asyncParams: {
             'quizeDoc': getDoc(['quizzes'], QuizzesRecord.fromSnapshot),
+            'scoreDoc': getDoc(['scores'], ScoresRecord.fromSnapshot),
           },
           builder: (context, params) => SuccessWidget(
             time: params.getParam('time', ParamType.int),
-            scoreRef: params.getParam(
-                'scoreRef', ParamType.DocumentReference, false, ['scores']),
             mode: params.getParam<GameMode>('mode', ParamType.Enum),
             quizeDoc: params.getParam('quizeDoc', ParamType.Document),
+            scoreDoc: params.getParam('scoreDoc', ParamType.Document),
+            score: params.getParam('score', ParamType.JSON),
           ),
         ),
         FFRoute(
@@ -147,27 +154,38 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'develop_quiz',
           path: '/developQuiz',
+          requireAuth: true,
           builder: (context, params) => DevelopQuizWidget(),
         ),
         FFRoute(
           name: 'develop_menu',
           path: '/developMenu',
+          requireAuth: true,
           builder: (context, params) => DevelopMenuWidget(),
         ),
         FFRoute(
           name: 'develop_sound',
           path: '/developSound',
+          requireAuth: true,
           builder: (context, params) => DevelopSoundWidget(),
         ),
         FFRoute(
           name: 'Ranking',
           path: '/ranking',
+          requireAuth: true,
           builder: (context, params) => RankingWidget(),
         ),
         FFRoute(
           name: 'develop_slider',
           path: '/developSlider',
+          requireAuth: true,
           builder: (context, params) => DevelopSliderWidget(),
+        ),
+        FFRoute(
+          name: 'develop_schedule',
+          path: '/developSchedule',
+          requireAuth: true,
+          builder: (context, params) => DevelopScheduleWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -402,6 +420,35 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+}
+
+class _RouteErrorBuilder extends StatefulWidget {
+  const _RouteErrorBuilder({
+    Key? key,
+    required this.state,
+    required this.child,
+  }) : super(key: key);
+
+  final GoRouterState state;
+  final Widget child;
+
+  @override
+  State<_RouteErrorBuilder> createState() => _RouteErrorBuilderState();
+}
+
+class _RouteErrorBuilderState extends State<_RouteErrorBuilder> {
+  @override
+  void initState() {
+    super.initState();
+    // Handle erroneous links from Firebase Dynamic Links.
+    if (widget.state.location.startsWith('/link') &&
+        widget.state.location.contains('request_ip_version')) {
+      SchedulerBinding.instance.addPostFrameCallback((_) => context.go('/'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class RootPageContext {

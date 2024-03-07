@@ -1,9 +1,13 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main_menu_model.dart';
@@ -25,6 +29,21 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MainMenuModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.aoLanguage = await actions.getLanguageCode(
+        context,
+      );
+      if (valueOrDefault(currentUserDocument?.language, '') !=
+          _model.aoLanguage) {
+        // 日本語以外は英語に設定
+
+        await currentUserReference!.update(createUsersRecordData(
+          language: _model.aoLanguage == 'ja' ? 'ja' : 'en',
+        ));
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

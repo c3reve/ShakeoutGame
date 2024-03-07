@@ -10,6 +10,8 @@ export '/develop/develop_quiz/develop_quiz_widget.dart' show DevelopQuizWidget;
 export '/develop/develop_menu/develop_menu_widget.dart' show DevelopMenuWidget;
 export '/develop/develop_sound/develop_sound_widget.dart'
     show DevelopSoundWidget;
-export '/ranking/ranking_widget.dart' show RankingWidget;
+export '/pages/ranking/ranking_widget.dart' show RankingWidget;
 export '/develop/develop_slider/develop_slider_widget.dart'
     show DevelopSliderWidget;
+export '/develop/develop_schedule/develop_schedule_widget.dart'
+    show DevelopScheduleWidget;

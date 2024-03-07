@@ -42,10 +42,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>shakeoutgame.com</string>
+        <string>shakeout_game</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>shakeoutgame</string>
+        <string>jp.co.c3reve.shakeoutgame</string>
         </array>
         </dict>
     </array>

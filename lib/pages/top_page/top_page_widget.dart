@@ -3,7 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -145,13 +145,11 @@ class _TopPageWidgetState extends State<TopPageWidget> {
                             if (user == null) {
                               return;
                             }
-                            _model.languageCode = await actions.getLanguageCode(
-                              context,
-                            );
 
                             await currentUserReference!
                                 .update(createUsersRecordData(
-                              language: _model.languageCode,
+                              photoUrl:
+                                  'https://mighty.tools/mockmind-api/content/human/${random_data.randomInteger(1, 20).toString()}.jpg',
                             ));
 
                             context.pushNamedAuth(
@@ -164,8 +162,6 @@ class _TopPageWidgetState extends State<TopPageWidget> {
                                 ),
                               },
                             );
-
-                            setState(() {});
                           },
                           text: '',
                           options: FFButtonOptions(
