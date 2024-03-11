@@ -56,8 +56,6 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: 100.0,
       height: 100.0,

@@ -42,8 +42,6 @@ class _RankingWidgetState extends State<RankingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<SchedulesRecord>>(
       future: querySchedulesRecordOnce(
         queryBuilder: (schedulesRecord) => schedulesRecord

@@ -710,7 +710,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                             }(),
                                           );
                                           _model.vibrationTimer?.cancel();
-                                          if (widget.mode == GameMode.Real) {
+                                          if (widget.scheduleRef != null) {
                                             var scoresRecordReference =
                                                 ScoresRecord.collection.doc();
                                             await scoresRecordReference.set({

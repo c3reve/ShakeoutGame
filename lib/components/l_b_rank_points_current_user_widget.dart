@@ -54,8 +54,6 @@ class _LBRankPointsCurrentUserWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Stack(
       children: [
         Builder(

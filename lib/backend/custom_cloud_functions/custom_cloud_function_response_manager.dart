@@ -10,3 +10,14 @@ class OnScheduleNotificationCloudFunctionCallResponse {
   bool? succeeded;
   dynamic jsonBody;
 }
+
+class OnScheduleDoneCloudFunctionCallResponse {
+  OnScheduleDoneCloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}
