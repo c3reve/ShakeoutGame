@@ -428,6 +428,15 @@ class _DevelopSoundWidgetState extends State<DevelopSoundWidget> {
                       _model.soundPlayer7!
                           .setAsset('assets/audios/earthquake.mp3')
                           .then((_) => _model.soundPlayer7!.play());
+
+                      _model.soundPlayer8 ??= AudioPlayer();
+                      if (_model.soundPlayer8!.playing) {
+                        await _model.soundPlayer8!.stop();
+                      }
+                      _model.soundPlayer8!.setVolume(1.0);
+                      _model.soundPlayer8!
+                          .setAsset('assets/audios/push.mp3')
+                          .then((_) => _model.soundPlayer8!.play());
                     },
                     text: FFLocalizations.of(context).getText(
                       'bqh2jp32' /* Button */,

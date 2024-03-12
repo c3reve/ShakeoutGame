@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/components/shake_out_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -57,8 +58,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -88,12 +87,31 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                       children: [
                         Padding(
                           padding: EdgeInsets.all(24.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(0.0),
-                            child: Image.asset(
-                              'assets/images/logo.png',
-                              fit: BoxFit.cover,
-                            ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              wrapWithModel(
+                                model: _model.shakeOutImageModel1,
+                                updateCallback: () => setState(() {}),
+                                child: ShakeOutImageWidget(
+                                  step: GameStep.Drop,
+                                ),
+                              ),
+                              wrapWithModel(
+                                model: _model.shakeOutImageModel2,
+                                updateCallback: () => setState(() {}),
+                                child: ShakeOutImageWidget(
+                                  step: GameStep.Cover,
+                                ),
+                              ),
+                              wrapWithModel(
+                                model: _model.shakeOutImageModel3,
+                                updateCallback: () => setState(() {}),
+                                child: ShakeOutImageWidget(
+                                  step: GameStep.HoldOn,
+                                ),
+                              ),
+                            ].divide(SizedBox(width: 2.0)),
                           ),
                         ),
                         Padding(
@@ -211,6 +229,72 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                               16.0, 8.0, 16.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              context.pushNamed('MyItems');
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'hf1hdpl1' /* マイアイテム */,
+                            ),
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 56.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).accent1,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Figtree',
+                                    color: FlutterFlowTheme.of(context).info,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('Ranking');
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'q2429vqk' /* ランキング */,
+                            ),
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 56.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).accent1,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Figtree',
+                                    color: FlutterFlowTheme.of(context).info,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 8.0, 16.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
                               context.pushNamed(
                                 'Settings',
                                 extra: <String, dynamic>{
@@ -224,7 +308,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                               );
                             },
                             text: FFLocalizations.of(context).getText(
-                              'hf1hdpl1' /* 設定 */,
+                              'vr9bvcxt' /* 設定 */,
                             ),
                             options: FFButtonOptions(
                               width: double.infinity,

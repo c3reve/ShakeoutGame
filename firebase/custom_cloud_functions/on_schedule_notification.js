@@ -37,6 +37,7 @@ async function addSchedule(date) {
   const scheduleRef = await db.collection("schedules").add({
     start_time: date,
     end_time: expired,
+    done_date: null,
     sliderValue,
     quizRef: quiz.ref,
     created_time: timestamp,

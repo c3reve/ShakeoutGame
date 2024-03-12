@@ -38,8 +38,6 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -212,6 +210,30 @@ class _DevelopMenuWidgetState extends State<DevelopMenuWidget> {
                   title: Text(
                     FFLocalizations.of(context).getText(
                       'so8t28ft' /* スケジュール */,
+                    ),
+                    style: FlutterFlowTheme.of(context).titleLarge,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 20.0,
+                  ),
+                  tileColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  dense: false,
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed('Tutorial');
+                },
+                child: ListTile(
+                  title: Text(
+                    FFLocalizations.of(context).getText(
+                      'z29ttq7b' /* チュートリアル */,
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge,
                   ),

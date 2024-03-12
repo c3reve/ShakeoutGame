@@ -45,8 +45,6 @@ class _ProfileCircleWidgetState extends State<ProfileCircleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: valueOrDefault<double>(
         widget.ranks == LeaderboardRanks.First ? 120.0 : 90.0,

@@ -144,6 +144,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             quizeDoc: params.getParam('quizeDoc', ParamType.Document),
             scoreDoc: params.getParam('scoreDoc', ParamType.Document),
             score: params.getParam('score', ParamType.JSON),
+            isSuccess: params.getParam('isSuccess', ParamType.bool),
           ),
         ),
         FFRoute(
@@ -186,6 +187,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/developSchedule',
           requireAuth: true,
           builder: (context, params) => DevelopScheduleWidget(),
+        ),
+        FFRoute(
+          name: 'rankingDetail',
+          path: '/rankingDetail',
+          requireAuth: true,
+          asyncParams: {
+            'prScheduleDoc':
+                getDoc(['schedules'], SchedulesRecord.fromSnapshot),
+          },
+          builder: (context, params) => RankingDetailWidget(
+            prScheduleDoc: params.getParam('prScheduleDoc', ParamType.Document),
+          ),
+        ),
+        FFRoute(
+          name: 'MyItems',
+          path: '/myItems',
+          requireAuth: true,
+          builder: (context, params) => MyItemsWidget(),
+        ),
+        FFRoute(
+          name: 'ItemDetail',
+          path: '/itemDetail',
+          requireAuth: true,
+          builder: (context, params) => ItemDetailWidget(
+            itemRef: params.getParam(
+                'itemRef', ParamType.DocumentReference, false, ['items']),
+            userItemRef: params.getParam('userItemRef',
+                ParamType.DocumentReference, false, ['user_items']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

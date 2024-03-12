@@ -1,32 +1,24 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
-import '/custom_code/actions/index.dart' as actions;
-import 'develop_sound_widget.dart' show DevelopSoundWidget;
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'item_detail_widget.dart' show ItemDetailWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
-class DevelopSoundModel extends FlutterFlowModel<DevelopSoundWidget> {
+class ItemDetailModel extends FlutterFlowModel<ItemDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for musicSwitch widget.
-  bool? musicSwitchValue1;
-  // State field(s) for musicSwitch widget.
-  bool? musicSwitchValue2;
-  // State field(s) for soundSlider widget.
-  double? soundSliderValue;
-  AudioPlayer? soundPlayer1;
-  AudioPlayer? soundPlayer2;
-  AudioPlayer? soundPlayer3;
-  AudioPlayer? soundPlayer4;
-  AudioPlayer? soundPlayer5;
-  AudioPlayer? soundPlayer6;
-  AudioPlayer? soundPlayer7;
+  // State field(s) for RatingBar widget.
+  double? ratingBarValue;
 
   /// Initialization and disposal methods.
 

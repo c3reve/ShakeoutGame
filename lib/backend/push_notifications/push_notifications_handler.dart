@@ -128,6 +128,7 @@ final parametersBuilderMap =
               data, 'quizeDoc', QuizzesRecord.fromSnapshot),
           'scoreDoc': await getDocumentParameter<ScoresRecord>(
               data, 'scoreDoc', ScoresRecord.fromSnapshot),
+          'isSuccess': getParameter<bool>(data, 'isSuccess'),
         },
       ),
   'TopPage': ParameterData.none(),
@@ -137,6 +138,19 @@ final parametersBuilderMap =
   'Ranking': ParameterData.none(),
   'develop_slider': ParameterData.none(),
   'develop_schedule': ParameterData.none(),
+  'rankingDetail': (data) async => ParameterData(
+        allParams: {
+          'prScheduleDoc': await getDocumentParameter<SchedulesRecord>(
+              data, 'prScheduleDoc', SchedulesRecord.fromSnapshot),
+        },
+      ),
+  'MyItems': ParameterData.none(),
+  'ItemDetail': (data) async => ParameterData(
+        allParams: {
+          'itemRef': getParameter<DocumentReference>(data, 'itemRef'),
+          'userItemRef': getParameter<DocumentReference>(data, 'userItemRef'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

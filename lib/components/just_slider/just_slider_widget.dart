@@ -60,8 +60,6 @@ class _JustSliderWidgetState extends State<JustSliderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(),

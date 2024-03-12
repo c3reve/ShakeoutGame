@@ -89,8 +89,6 @@ class _QuizWidgetState extends State<QuizWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Stack(
       children: [
         Container(

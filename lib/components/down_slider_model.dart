@@ -19,7 +19,7 @@ class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  InstantTimer? instantTimer;
+  InstantTimer? DropTimer;
 
   /// Initialization and disposal methods.
 
@@ -28,7 +28,7 @@ class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
 
   @override
   void dispose() {
-    instantTimer?.cancel();
+    DropTimer?.cancel();
   }
 
   /// Action blocks are added here.

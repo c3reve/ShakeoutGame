@@ -49,8 +49,6 @@ class _DecimalTimeWidgetState extends State<DecimalTimeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: BoxDecoration(),
       child: Row(

@@ -1,4 +1,5 @@
 import '/backend/schema/enums/enums.dart';
+import '/components/shake_out_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
@@ -56,8 +57,6 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: 100.0,
       height: 100.0,
@@ -86,22 +85,18 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                               height: 100.0,
                               child: CarouselSlider(
                                 items: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/drop.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel1,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Drop,
                                     ),
                                   ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/drop.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel2,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Drop,
                                     ),
                                   ),
                                 ],
@@ -140,13 +135,11 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                               height: 100.0,
                               child: Stack(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/drop.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel3,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Drop,
                                     ),
                                   ),
                                 ],
@@ -169,22 +162,18 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                               height: 100.0,
                               child: CarouselSlider(
                                 items: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/cover.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel4,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Cover,
                                     ),
                                   ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/cover.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel5,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Cover,
                                     ),
                                   ),
                                 ],
@@ -223,13 +212,11 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                               height: 100.0,
                               child: Stack(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/cover.png',
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  wrapWithModel(
+                                    model: _model.shakeOutImageModel6,
+                                    updateCallback: () => setState(() {}),
+                                    child: ShakeOutImageWidget(
+                                      step: GameStep.Cover,
                                     ),
                                   ),
                                 ],
@@ -256,24 +243,20 @@ class _StepButtonWidgetState extends State<StepButtonWidget> {
                                 HapticFeedback.selectionClick();
                                 await widget.onDone?.call();
                               },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/hold_on.png',
-                                  width: 100.0,
-                                  height: 100.0,
-                                  fit: BoxFit.cover,
+                              child: wrapWithModel(
+                                model: _model.shakeOutImageModel7,
+                                updateCallback: () => setState(() {}),
+                                child: ShakeOutImageWidget(
+                                  step: GameStep.HoldOn,
                                 ),
                               ),
                             );
                           } else {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/hold_on.png',
-                                width: 100.0,
-                                height: 100.0,
-                                fit: BoxFit.cover,
+                            return wrapWithModel(
+                              model: _model.shakeOutImageModel8,
+                              updateCallback: () => setState(() {}),
+                              child: ShakeOutImageWidget(
+                                step: GameStep.HoldOn,
                               ),
                             );
                           }
