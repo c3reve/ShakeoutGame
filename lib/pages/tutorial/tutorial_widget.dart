@@ -347,7 +347,7 @@ class _TutorialWidgetState extends State<TutorialWidget> {
                   ),
                   Builder(
                     builder: (context) {
-                      if (_model.pageViewCurrentIndex <= 2) {
+                      if (_model.pageViewCurrentIndex <= 1) {
                         return Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 80.0),

@@ -311,9 +311,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': 'チュートリアル',
       'en': 'tutorial',
     },
-    'aggmayjp': {
+    'bjh346ox': {
       'ja': 'Home',
-      'en': 'Home',
+      'en': '',
     },
   },
   // Success
