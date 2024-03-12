@@ -32,8 +32,8 @@ async function addSchedule(date) {
 
   // スケジュール
   const expired = new Date(date);
-  // 期限を5分に設定
-  expired.setMinutes(expired.getMinutes() + 5);
+  // 期限を120分に設定
+  expired.setMinutes(expired.getMinutes() + 120);
   const scheduleRef = await db.collection("schedules").add({
     start_time: date,
     end_time: expired,
