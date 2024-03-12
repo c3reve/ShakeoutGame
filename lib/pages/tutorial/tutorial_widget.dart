@@ -103,6 +103,12 @@ class _TutorialWidgetState extends State<TutorialWidget> {
                               child: PageView(
                                 controller: _model.pageViewController ??=
                                     PageController(initialPage: 0),
+                                onPageChanged: (_) async {
+                                  setState(() {
+                                    _model.psPageIndex =
+                                        _model.pageViewCurrentIndex;
+                                  });
+                                },
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   Padding(
@@ -347,7 +353,7 @@ class _TutorialWidgetState extends State<TutorialWidget> {
                   ),
                   Builder(
                     builder: (context) {
-                      if (_model.pageViewCurrentIndex <= 1) {
+                      if (_model.psPageIndex! < 2) {
                         return Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 80.0),
