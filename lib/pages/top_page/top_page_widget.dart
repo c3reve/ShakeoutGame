@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
+import '/components/shake_out_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -69,16 +71,35 @@ class _TopPageWidgetState extends State<TopPageWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(24.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.asset(
-                                      'assets/images/logo.png',
-                                      fit: BoxFit.cover,
-                                    ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      wrapWithModel(
+                                        model: _model.shakeOutImageModel1,
+                                        updateCallback: () => setState(() {}),
+                                        child: ShakeOutImageWidget(
+                                          step: GameStep.Drop,
+                                        ),
+                                      ),
+                                      wrapWithModel(
+                                        model: _model.shakeOutImageModel2,
+                                        updateCallback: () => setState(() {}),
+                                        child: ShakeOutImageWidget(
+                                          step: GameStep.Cover,
+                                        ),
+                                      ),
+                                      wrapWithModel(
+                                        model: _model.shakeOutImageModel3,
+                                        updateCallback: () => setState(() {}),
+                                        child: ShakeOutImageWidget(
+                                          step: GameStep.HoldOn,
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 2.0)),
                                   ),
                                 ),
                                 Padding(

@@ -69,15 +69,17 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
   QuizzesRecord? randomQuiz;
   InstantTimer? vibrationTimer;
   // State field(s) for ScoreTimer widget.
-  int scoreTimerMilliseconds = 0;
+  int scoreTimerMilliseconds = 60000;
   String scoreTimerValue = StopWatchTimer.getDisplayTime(
-    0,
+    60000,
     hours: false,
     minute: false,
   );
   FlutterFlowTimerController scoreTimerController =
-      FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countUp));
+      FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
 
+  // Stores action output result for [Backend Call - Create Document] action in ScoreTimer widget.
+  ScoresRecord? aoCreatedScoreCopy;
   // Model for DownSlider component.
   late DownSliderModel downSliderModel;
   // Model for JustSlider component.
@@ -131,20 +133,20 @@ class PlayModel extends FlutterFlowModel<PlayWidget> {
       psNowStep = GameStep.Cover;
       psLapTime = scoreTimerMilliseconds;
       psScore = ScoreSetStruct(
-        dropTime: scoreTimerMilliseconds / 1000,
+        dropTime: (60000 - scoreTimerMilliseconds) / 1000,
       );
     } else if (step == GameStep.Cover) {
       // 現在のstepをHoldOnに更新
       psNowStep = GameStep.HoldOn;
       updatePsScoreStruct(
-        (e) => e..coverTime = (scoreTimerMilliseconds - psLapTime) / 1000,
+        (e) => e..coverTime = (psLapTime - scoreTimerMilliseconds) / 1000,
       );
       psLapTime = scoreTimerMilliseconds;
     } else {
       updatePsScoreStruct(
         (e) => e
-          ..holdOnTime = (scoreTimerMilliseconds - psLapTime) / 1000
-          ..totalTime = (60000 - scoreTimerMilliseconds) / 1000,
+          ..holdOnTime = (psLapTime - scoreTimerMilliseconds) / 1000
+          ..totalTime = (scoreTimerMilliseconds) / 1000,
       );
     }
   }

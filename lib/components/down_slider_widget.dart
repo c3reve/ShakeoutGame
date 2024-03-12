@@ -37,7 +37,7 @@ class _DownSliderWidgetState extends State<DownSliderWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.instantTimer = InstantTimer.periodic(
+      _model.DropTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 50),
         callback: (timer) async {
           if (_model.csIsUp!) {
@@ -135,7 +135,7 @@ class _DownSliderWidgetState extends State<DownSliderWidget> {
               : () async {
                   if ((_model.csSliderValue! >= 0.8) &&
                       (_model.csSliderValue! <= 1.00)) {
-                    _model.instantTimer?.cancel();
+                    _model.DropTimer?.cancel();
                     await widget.onInitialized?.call(
                       true,
                     );

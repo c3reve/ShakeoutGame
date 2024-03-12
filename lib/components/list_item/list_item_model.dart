@@ -1,25 +1,18 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
-import 'down_slider_widget.dart' show DownSliderWidget;
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'list_item_widget.dart' show ListItemWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
-  ///  Local state fields for this component.
-
-  double? csSliderValue = 0.0;
-
-  bool? csIsUp = true;
-
-  bool isDisable = false;
-
+class ListItemModel extends FlutterFlowModel<ListItemWidget> {
   ///  State fields for stateful widgets in this component.
 
-  InstantTimer? DropTimer;
+  // State field(s) for RatingBar widget.
+  double? ratingBarValue;
 
   /// Initialization and disposal methods.
 
@@ -27,9 +20,7 @@ class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    DropTimer?.cancel();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 

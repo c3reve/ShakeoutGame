@@ -1,25 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/components/list_item/list_item_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
-import 'down_slider_widget.dart' show DownSliderWidget;
+import 'my_items_widget.dart' show MyItemsWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
-  ///  Local state fields for this component.
+class MyItemsModel extends FlutterFlowModel<MyItemsWidget> {
+  ///  State fields for stateful widgets in this page.
 
-  double? csSliderValue = 0.0;
-
-  bool? csIsUp = true;
-
-  bool isDisable = false;
-
-  ///  State fields for stateful widgets in this component.
-
-  InstantTimer? DropTimer;
+  final unfocusNode = FocusNode();
 
   /// Initialization and disposal methods.
 
@@ -28,7 +22,7 @@ class DownSliderModel extends FlutterFlowModel<DownSliderWidget> {
 
   @override
   void dispose() {
-    DropTimer?.cancel();
+    unfocusNode.dispose();
   }
 
   /// Action blocks are added here.

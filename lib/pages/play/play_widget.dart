@@ -61,6 +61,18 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
         ),
       ],
     ),
+    'containerOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
     'imageOnPageLoadAnimation2': AnimationInfo(
       loop: true,
       trigger: AnimationTrigger.onPageLoad,
@@ -75,6 +87,18 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
         ),
       ],
     ),
+    'containerOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
     'imageOnPageLoadAnimation3': AnimationInfo(
       loop: true,
       trigger: AnimationTrigger.onPageLoad,
@@ -86,6 +110,18 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
           hz: 3,
           offset: Offset(0.0, 0.0),
           rotation: 0.017,
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -168,6 +204,10 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
           );
         }(),
       );
+      // タイマーリセット
+      _model.scoreTimerController.timer.setPresetTime(mSec: 60000, add: false);
+      _model.scoreTimerController.onResetTimer();
+
       // スコア計測開始
       _model.scoreTimerController.onStartTimer();
       if (!isWeb && FFAppState().isVibrationAllowed) {
@@ -208,7 +248,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).tertiary,
           automaticallyImplyLeading: false,
           actions: [
             FFButtonWidget(
@@ -242,6 +282,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                       await actions.stopAudio();
                     }(),
                   );
+                  _model.scoreTimerController.onStopTimer();
                   context.safePop();
                 }
               },
@@ -252,7 +293,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                 height: 40.0,
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primary,
+                color: FlutterFlowTheme.of(context).tertiary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Figtree',
                       color: Colors.white,
@@ -293,36 +334,171 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FlutterFlowTimer(
-                                initialTime: _model.scoreTimerMilliseconds,
-                                getDisplayTime: (value) =>
-                                    StopWatchTimer.getDisplayTime(
-                                  value,
-                                  hours: false,
-                                  minute: false,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'r8exkvdf' /* 残り時間 */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Figtree',
+                                        fontSize: 16.0,
+                                      ),
                                 ),
-                                controller: _model.scoreTimerController,
-                                updateStateInterval:
-                                    Duration(milliseconds: 100),
-                                onChanged: (value, displayTime, shouldUpdate) {
-                                  _model.scoreTimerMilliseconds = value;
-                                  _model.scoreTimerValue = displayTime;
-                                  if (shouldUpdate) setState(() {});
-                                },
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'Figtree',
-                                      fontSize: 28.0,
-                                      fontWeight: FontWeight.bold,
+                                Expanded(
+                                  child: FlutterFlowTimer(
+                                    initialTime: _model.scoreTimerMilliseconds,
+                                    getDisplayTime: (value) =>
+                                        StopWatchTimer.getDisplayTime(
+                                      value,
+                                      hours: false,
+                                      minute: false,
                                     ),
-                              ),
-                            ],
+                                    controller: _model.scoreTimerController,
+                                    updateStateInterval:
+                                        Duration(milliseconds: 100),
+                                    onChanged:
+                                        (value, displayTime, shouldUpdate) {
+                                      _model.scoreTimerMilliseconds = value;
+                                      _model.scoreTimerValue = displayTime;
+                                      if (shouldUpdate) setState(() {});
+                                    },
+                                    onEnded: () async {
+                                      await _model.doneStep(
+                                        context,
+                                        step: _model.psNowStep,
+                                      );
+                                      unawaited(
+                                        () async {
+                                          await actions.stopAudio();
+                                        }(),
+                                      );
+                                      _model.vibrationTimer?.cancel();
+                                      if (widget.scheduleRef != null) {
+                                        var scoresRecordReference =
+                                            ScoresRecord.collection.doc();
+                                        await scoresRecordReference.set({
+                                          ...createScoresRecordData(
+                                            userRef: currentUserReference,
+                                            scheduleRef: widget.scheduleRef,
+                                            time: _model.scoreTimerMilliseconds,
+                                            score: updateScoreSetStruct(
+                                              _model.psScore,
+                                              clearUnsetFields: false,
+                                              create: true,
+                                            ),
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'created_time':
+                                                  FieldValue.serverTimestamp(),
+                                            },
+                                          ),
+                                        });
+                                        _model.aoCreatedScoreCopy =
+                                            ScoresRecord.getDocumentFromData({
+                                          ...createScoresRecordData(
+                                            userRef: currentUserReference,
+                                            scheduleRef: widget.scheduleRef,
+                                            time: _model.scoreTimerMilliseconds,
+                                            score: updateScoreSetStruct(
+                                              _model.psScore,
+                                              clearUnsetFields: false,
+                                              create: true,
+                                            ),
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'created_time': DateTime.now(),
+                                            },
+                                          ),
+                                        }, scoresRecordReference);
+
+                                        context.goNamed(
+                                          'Success',
+                                          queryParameters: {
+                                            'time': serializeParam(
+                                              _model.scoreTimerMilliseconds,
+                                              ParamType.int,
+                                            ),
+                                            'mode': serializeParam(
+                                              widget.mode,
+                                              ParamType.Enum,
+                                            ),
+                                            'quizeDoc': serializeParam(
+                                              _model.psQuiz,
+                                              ParamType.Document,
+                                            ),
+                                            'scoreDoc': serializeParam(
+                                              _model.aoCreatedScore,
+                                              ParamType.Document,
+                                            ),
+                                            'score': serializeParam(
+                                              _model.psScore?.toMap(),
+                                              ParamType.JSON,
+                                            ),
+                                            'isSuccess': serializeParam(
+                                              false,
+                                              ParamType.bool,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'quizeDoc': _model.psQuiz,
+                                            'scoreDoc': _model.aoCreatedScore,
+                                          },
+                                        );
+                                      } else {
+                                        context.goNamed(
+                                          'Success',
+                                          queryParameters: {
+                                            'time': serializeParam(
+                                              _model.scoreTimerMilliseconds,
+                                              ParamType.int,
+                                            ),
+                                            'mode': serializeParam(
+                                              widget.mode,
+                                              ParamType.Enum,
+                                            ),
+                                            'quizeDoc': serializeParam(
+                                              _model.psQuiz,
+                                              ParamType.Document,
+                                            ),
+                                            'score': serializeParam(
+                                              _model.psScore?.toMap(),
+                                              ParamType.JSON,
+                                            ),
+                                            'isSuccess': serializeParam(
+                                              false,
+                                              ParamType.bool,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'quizeDoc': _model.psQuiz,
+                                          },
+                                        );
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Figtree',
+                                          fontSize: 28.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                              ].divide(SizedBox(width: 4.0)),
+                            ),
                           ),
                         ),
                         Expanded(
@@ -352,55 +528,111 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                               ),
                                             ).animateOnPageLoad(animationsMap[
                                                 'imageOnPageLoadAnimation1']!),
-                                            Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xB3FFFFFF),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(16.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'xvn18l2d' /* 地震が発生したら体勢を低くして地面に近づきましょう。 */,
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xB3FFFFFF),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'eegru5tv' /* 地震が発生したら体勢を低くして地面に近づきましょう。 */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge,
                                                       ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge,
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: wrapWithModel(
-                                                        model: _model
-                                                            .downSliderModel,
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        child: DownSliderWidget(
-                                                          onInitialized:
-                                                              (isCollect) async {
-                                                            setState(() {
-                                                              _model.psCanProceed =
-                                                                  isCollect!;
-                                                            });
-                                                          },
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: wrapWithModel(
+                                                          model: _model
+                                                              .downSliderModel,
+                                                          updateCallback: () =>
+                                                              setState(() {}),
+                                                          child:
+                                                              DownSliderWidget(
+                                                            onInitialized:
+                                                                (isCollect) async {
+                                                              setState(() {
+                                                                _model.psCanProceed =
+                                                                    isCollect!;
+                                                              });
+                                                            },
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
+                                            if (widget.mode ==
+                                                GameMode.Tutorial)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -0.1, -0.59),
+                                                child: Container(
+                                                  width: 385.0,
+                                                  height: 78.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16.0),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '5r7gmes2' /* 残り時間１分以内にゲームをクリアしてください！
+ボールが円の... */
+                                                          ,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'containerOnPageLoadAnimation1']!),
+                                              ),
                                           ],
                                         );
                                       } else if (_model.psNowStep ==
@@ -463,6 +695,55 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                                 ),
                                               ),
                                             ),
+                                            if (widget.mode ==
+                                                GameMode.Tutorial)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -0.04, -0.44),
+                                                child: Container(
+                                                  width: 354.0,
+                                                  height: 63.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16.0),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'gzbu9h8b' /* スライドの数値を合わせ、下のボタンを横にスワイプしましょう。 */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'containerOnPageLoadAnimation2']!),
+                                              ),
                                           ],
                                         );
                                       } else if (_model.psNowStep ==
@@ -530,6 +811,55 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                                 ),
                                               ),
                                             ),
+                                            if (widget.mode ==
+                                                GameMode.Tutorial)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, -0.64),
+                                                child: Container(
+                                                  width: 354.0,
+                                                  height: 63.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16.0),
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '5ozpsbq3' /* クイズの正解を選択し、下のボタンを長押ししましょう。 */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Figtree',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'containerOnPageLoadAnimation3']!),
+                                              ),
                                           ],
                                         );
                                       } else {
@@ -680,6 +1010,7 @@ class _PlayWidgetState extends State<PlayWidget> with TickerProviderStateMixin {
                                             context,
                                             step: _model.psNowStep,
                                           );
+                                          setState(() {});
                                         },
                                       ),
                                     ),

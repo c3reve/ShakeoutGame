@@ -7,7 +7,12 @@ import 'empty_text_model.dart';
 export 'empty_text_model.dart';
 
 class EmptyTextWidget extends StatefulWidget {
-  const EmptyTextWidget({super.key});
+  const EmptyTextWidget({
+    super.key,
+    String? text,
+  }) : this.text = text ?? 'データがありません';
+
+  final String text;
 
   @override
   State<EmptyTextWidget> createState() => _EmptyTextWidgetState();
@@ -42,9 +47,7 @@ class _EmptyTextWidgetState extends State<EmptyTextWidget> {
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Text(
-        FFLocalizations.of(context).getText(
-          'wsc4ut3d' /* まだランキングが記録されていません */,
-        ),
+        widget.text,
         style: FlutterFlowTheme.of(context).bodyMedium,
       ),
     );

@@ -109,17 +109,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '90lh48ob': {
       'ja': 'シェイクアウト\nゲーム',
-      'en': 'ShakeOut\nGame',
+      'en': 'shake out\ngame',
     },
     '45xdkaj0': {
       'ja': 'はじめる',
-      'en': 'Play',
+      'en': 'Start',
     },
     'naw8gn6b': {
       'ja': 'ランキング',
       'en': 'Ranking',
     },
     'hf1hdpl1': {
+      'ja': 'マイアイテム',
+      'en': 'Setting',
+    },
+    'q2429vqk': {
+      'ja': 'ランキング',
+      'en': 'Ranking',
+    },
+    'vr9bvcxt': {
       'ja': '設定',
       'en': 'Setting',
     },
@@ -134,6 +142,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Settings
   {
+    's0nsto89': {
+      'ja': '画像を変更',
+      'en': 'change image',
+    },
     'i8d4xdx1': {
       'ja': 'ニックネーム',
       'en': 'nickname',
@@ -157,10 +169,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xhaw44e7': {
       'ja': 'チュートリアル',
       'en': 'tutorial',
-    },
-    'bxfo3361': {
-      'ja': 'ランキング',
-      'en': 'LEADER BOARD',
     },
     'xr2qhw6n': {
       'ja': 'Logout',
@@ -192,18 +200,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja': '中止',
       'en': 'cancel',
     },
-    'xvn18l2d': {
+    'r8exkvdf': {
+      'ja': '残り時間',
+      'en': 'Remaining time',
+    },
+    'eegru5tv': {
       'ja': '地震が発生したら体勢を低くして地面に近づきましょう。',
       'en': 'If an earthquake occurs, stay low and get close to the ground.',
+    },
+    '5r7gmes2': {
+      'ja': '残り時間１分以内にゲームをクリアしてください！\nボールが円の中で止め、下のボタンを下にスワイプすると次に進みます。',
+      'en':
+          'Clear the game within 1 minute remaining!\nWhen the ball stops in the circle, swipe down on the bottom button to move on.',
     },
     'kpohh8hb': {
       'ja': '固定されたデスクやテーブルの下に入り、頭を守りましょう。\n頭を守るものがない場合は、腕や荷物を使って、頭を守りましょう。',
       'en':
           'Protect your head by getting under a fixed desk or table.\nIf you don\'t have something to protect your head, use your arms or luggage to protect your head.',
     },
+    'gzbu9h8b': {
+      'ja': 'スライドの数値を合わせ、下のボタンを横にスワイプしましょう。',
+      'en':
+          'Match the numbers on the slides and swipe the button below horizontally.',
+    },
     'fnmlbbtm': {
       'ja': '揺れが止まるまで動かずじっとしていましょう。',
       'en': 'Stay still and do not move until the shaking stops.',
+    },
+    '5ozpsbq3': {
+      'ja': 'クイズの正解を選択し、下のボタンを長押ししましょう。',
+      'en':
+          'Select the correct answer to the quiz and press and hold the button below.',
     },
     '2z6gscgr': {
       'ja': 'DROPを下にスワイプ！',
@@ -233,10 +260,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Tutorial
   {
     '03flc2uv': {
+      'ja': '今、地震が起きたら\nどうしますか？',
+      'en': 'If an earthquake happens now\nwhat should I do?',
+    },
+    'mu1wvlin': {
+      'ja':
+          '東日本大震災は、2011年3月11日に発生したマグニチュード9.0の地震とそれに伴う大規模な津波で、日本の東北地方を中心に甚大な被害をもたらしました。この自然災害によって、1万5千人以上が死亡し、数千人が行方不明となりました。\n\n地震が起きたことを想定した避難訓練が定期的に行われている日本でも、地震によって多くの被害が出ています。\n\n地震があまり起きない国の人々には地震発生時に何をすべきか分からない人も多くいます。\n\nこのアプリケーションは地震発生時に咄嗟に行動を判断できるようにするための教育ゲームです。',
+      'en':
+          'The Great East Japan Earthquake was a magnitude 9.0 earthquake that occurred on March 11, 2011, and the accompanying large-scale tsunami, causing extensive damage mainly in the Tohoku region of Japan. This natural disaster left more than 15,000 people dead and thousands missing.\n\nEven in Japan, where evacuation drills are regularly conducted in the event of an earthquake, earthquakes have caused a lot of damage.\n\nMany people in countries where earthquakes do not occur often do not know what to do in the event of an earthquake.\n\nThis application is an educational game that allows you to quickly decide what to do when an earthquake occurs.',
+    },
+    'cznbltal': {
       'ja': 'シェイクアウトとは？',
       'en': 'What is shakeout?',
     },
-    'mu1wvlin': {
+    '5vh18yo7': {
       'ja':
           'シェイクアウト訓練は、大規模な地震発生時の対応を想定した緊急避難訓練です。この訓練を通じて、個人、家族、学校、企業などが地震発生時の安全な行動を学び、実践することができます。',
       'en':
@@ -250,11 +287,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ja':
           '地震発生時、まずは「しゃがんで」安全な場所に移動し、「頭を守る」ために机やテーブルの下などに隠れ、「しっかりと持ちこたえる」ために何かしっかりとしたものにつかまります。',
       'en':
-          'When an earthquake occurs, the first thing you should do is ``squat\'\' and move to a safe place, hide under a desk or table to ``protect your head,\'\' and hold on to something solid to ``hold on.\'\'',
+          'When an earthquake occurs, the first thing you should do is ``squat down\'\' and move to a safe place, hide under a desk or table to ``protect your head,\'\' and hold on to something solid to ``hold on.\'\'',
+    },
+    '2zai0db7': {
+      'ja': 'このゲームについて',
+      'en': 'About this game',
+    },
+    'suwj84j7': {
+      'ja':
+          'シェイクアウトについて理解していたとしても実際に突然の地震が発生した時に咄嗟に正しい判断をして冷静な行動をすることはとても難しいです。\n\nこのゲームでは、実際に地震が発生したことを想定した突然のプッシュ通知でシェイクアウトゲームを実施することで、実際に地震が発生したときに咄嗟の判断や行動ができるように訓練ができます。\n\nまた、避難するまでのタイムでランキング上位になることで特別なアイテムが獲得できます。\n※チュートリアルやフリープレイではランキングに反映されません。\n\nそれでは、実際にゲームを開始してみましょう！',
+      'en':
+          'Even if you understand shakeout, it is very difficult to make the right decision and act calmly when a sudden earthquake actually occurs.\n\nIn this game, by playing a shakeout game with sudden push notifications that simulate an actual earthquake, you can train your child to make quick decisions and take actions in the event of an actual earthquake.\n\nAdditionally, you can earn special items by reaching the top of the rankings in the time it takes to evacuate.\n*Tutorials and free play will not be reflected in the rankings.\n\nNow let\'s actually start the game!',
     },
     'hl81aeg7': {
-      'ja': 'チュートリアルを開始',
-      'en': 'Start tutorial',
+      'ja': '次へ',
+      'en': 'to the next',
+    },
+    'x2luf449': {
+      'ja': 'ゲーム開始！',
+      'en': 'game start!',
     },
     'y3dkyvef': {
       'ja': 'チュートリアル',
@@ -267,13 +318,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Success
   {
-    'x8f65l8n': {
+    'l0k24twa': {
       'ja': 'おめでとうございます！\n避難に成功しました！',
-      'en': 'Congratulations!\nSuccessful evacuation!',
+      'en': 'congratulations!\nSuccessful evacuation!',
+    },
+    'x8f65l8n': {
+      'ja': 'タイムオーバー\n避難に失敗しました。',
+      'en': 'time over\nEvacuation failed.',
     },
     'qzn7ies7': {
-      'ja': '記録',
-      'en': 'record',
+      'ja': '残り時間',
+      'en': 'Remaining time',
     },
     '2zhjrtlu': {
       'ja': '秒',
@@ -281,27 +336,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6r6i8a2n': {
       'ja': 'Drop',
-      'en': '',
+      'en': 'Drop',
     },
     'gu17p67g': {
       'ja': '秒',
-      'en': '',
+      'en': 'seconds',
     },
     'ybyk62hx': {
       'ja': 'Cover',
-      'en': '',
+      'en': 'Cover',
     },
     'fbmbvrfr': {
       'ja': '秒',
-      'en': '',
+      'en': 'seconds',
     },
     'n36vhlvl': {
       'ja': 'Hold On',
-      'en': '',
+      'en': 'Hold On',
     },
     '153rsc7v': {
       'ja': '秒',
-      'en': '',
+      'en': 'seconds',
     },
     'w1wytlbo': {
       'ja':
@@ -309,7 +364,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en':
           'Free play only allows you to check your records.\n\nIf you turn on app notifications, you can train for an actual earthquake, register for rankings, and earn items.',
     },
+    'c8fyc1u1': {
+      'ja': '残り時間をより多く残してハイスコアを狙いましょう！\n通知がきたタイミングでゲームをクリアするとランキングにスコア反映されます。',
+      'en':
+          'Let\'s leave more time left and aim for a high score!\nIf you clear the game when you receive the notification, your score will be reflected in the ranking.',
+    },
     '8kbstuzd': {
+      'ja': '日本の被災地に寄付する',
+      'en': 'Donate to disaster areas in Japan',
+    },
+    'r2qxf4ge': {
       'ja': 'タイトルへ',
       'en': 'go to Title',
     },
@@ -384,9 +448,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'so8t28ft': {
       'ja': 'スケジュール',
-      'en': '',
+      'en': 'schedule',
     },
     'sq8oxqfm': {
+      'ja': '',
+      'en': '',
+    },
+    'z29ttq7b': {
+      'ja': 'チュートリアル',
+      'en': 'tutorial',
+    },
+    '4t56x461': {
       'ja': '',
       'en': '',
     },
@@ -415,19 +487,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9yawe5ek': {
       'ja': '効果音',
-      'en': '',
+      'en': 'Sound effect',
     },
     'x5emcc8n': {
       'ja': 'BGM',
-      'en': '',
+      'en': 'BGM',
     },
     'xive42n9': {
       'ja': 'BGMの音量',
-      'en': '',
+      'en': 'BGM volume',
     },
     'bqh2jp32': {
       'ja': 'Button',
-      'en': '',
+      'en': 'Button',
     },
     '3kuaqcfe': {
       'ja': 'Page Title',
@@ -442,31 +514,80 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'dogp95en': {
       'ja': 'ランキング',
-      'en': '',
+      'en': 'Ranking',
+    },
+    'kdfw63hu': {
+      'ja': '全体',
+      'en': 'whole',
+    },
+    'ay60wfna': {
+      'ja': '自分のみ',
+      'en': 'only me',
     },
     '4yn84b5t': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // develop_slider
   {
     'fl5hzmxz': {
       'ja': 'Page Title',
-      'en': '',
+      'en': 'Page Title',
     },
     'q6n7sr1a': {
       'ja': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // develop_schedule
   {
     'cdo2qtz6': {
       'ja': 'Page Title',
-      'en': '',
+      'en': 'Page Title',
     },
     '6ndl5v4c': {
+      'ja': 'Home',
+      'en': 'Home',
+    },
+  },
+  // rankingDetail
+  {
+    '6ioijjin': {
+      'ja': 'ランキング詳細',
+      'en': '',
+    },
+    'e2inuykw': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // MyItems
+  {
+    'r9feos2z': {
+      'ja': 'マイアイテム',
+      'en': '',
+    },
+    'u14xg4sk': {
+      'ja': 'Home',
+      'en': '',
+    },
+  },
+  // ItemDetail
+  {
+    'mzck3q01': {
+      'ja': 'レアリティ: ',
+      'en': '',
+    },
+    'e0nnrhf7': {
+      'ja': '獲得したアイテムをGoogleウォレットに追加することができます。',
+      'en': '',
+    },
+    '6gu71bps': {
+      'ja': 'アイテム詳細',
+      'en': '',
+    },
+    'uxmeij2g': {
       'ja': 'Home',
       'en': '',
     },
@@ -498,7 +619,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'jryfodht': {
       'ja': 'you',
-      'en': '',
+      'en': 'you',
     },
     'yye4p0w8': {
       'ja': 'Points',
@@ -549,10 +670,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'A.',
     },
   },
-  // emptyText
+  // shakeOutImage
   {
-    'wsc4ut3d': {
-      'ja': 'まだランキングが記録されていません',
+    'o14rrgp6': {
+      'ja': '動かない',
+      'en': 'Drop',
+    },
+    '9zlsnkov': {
+      'ja': '頭を守り',
+      'en': 'Cover',
+    },
+    'pu9tu2ql': {
+      'ja': 'まず低く',
+      'en': 'Hold on',
+    },
+  },
+  // ListItem
+  {
+    'x9e60k82': {
+      'ja': 'レアリティ: ',
+      'en': '',
+    },
+    'h6mj3lug': {
+      'ja': '獲得日: ',
       'en': '',
     },
   },
