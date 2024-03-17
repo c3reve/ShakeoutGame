@@ -32,8 +32,8 @@ async function addSchedule(date) {
 
   // スケジュール
   const expired = new Date(date);
-  // 期限を120分に設定
-  expired.setMinutes(expired.getMinutes() + 120);
+  // 期限を360分に設定
+  expired.setMinutes(expired.getMinutes() + 360);
   const scheduleRef = await db.collection("schedules").add({
     start_time: date,
     end_time: expired,
@@ -48,8 +48,8 @@ async function addSchedule(date) {
     scheduleRef,
     status: "started",
     target_audience: "All",
-    notification_title: "シェイクアウト訓練",
-    notification_text: "2分以内に避難してください！",
+    notification_title: "Earthquake drill occurred!",
+    notification_text: `Let's do an evacuation drill now!`,
     notification_sound: "default",
     initial_page_name: "Play",
     parameter_data: `{"scheduleRef":"/schedules/${scheduleRef.id}","mode":"Real"}`,
